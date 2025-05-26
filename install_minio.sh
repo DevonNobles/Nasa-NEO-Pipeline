@@ -55,7 +55,7 @@ else
   chmod +x "$PWD/minio/minio-binaries/mc"
   sudo ln -sf "$PWD/minio/minio-binaries/mc" /usr/local/bin/mc
   export PATH=$PATH:$PWD/minio/minio-binaries/
-  echo "minIO Client installed"
+  echo "MinIO Client installed"
   echo "Use 'mc --help' for more info"
 fi
 

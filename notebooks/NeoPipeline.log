@@ -11,3 +11,39 @@ INFO:__main__:Mode: silver......transforming
 INFO:__main__:No silver transformation implemented
 INFO:__main__:Mode: silver......loading
 INFO:__main__:Parquet file successfully uploaded, w/Iceberg as silver/neo-2025-05-02_2025-05-09.parquet in bucket neo
+INFO:__main__:Successfully connected to Minio at localhost:9000
+INFO:__main__:Mode: bronze......extracting
+INFO:__main__:JSON data file extracted from https://api.nasa.gov/neo/rest/v1/feed?
+INFO:__main__:Mode: bronze......transforming
+INFO:__main__:No bronze transformation implemented
+INFO:__main__:Mode: bronze......loading
+INFO:__main__:JSON file successfully uploaded as bronze/neo-2025-05-02_2025-05-09.json in bucket neo
+INFO:__main__:Mode: silver......extracting
+INFO:__main__:bronze/neo-2025-05-02_2025-05-09.json retrieved from 'neo' bucket
+INFO:__main__:Mode: silver......transforming
+INFO:__main__:JSON converted to pyspark DataFrame
+INFO:__main__:Successfully connected to Minio at localhost:9000
+INFO:__main__:Mode: bronze......extracting
+INFO:__main__:JSON data file extracted from https://api.nasa.gov/neo/rest/v1/feed?
+INFO:__main__:Mode: bronze......transforming
+INFO:__main__:No bronze transformation implemented
+INFO:__main__:Mode: bronze......loading
+INFO:__main__:JSON file successfully uploaded as bronze/neo-2025-05-02_2025-05-09.json in bucket neo
+INFO:__main__:Mode: silver......extracting
+INFO:__main__:bronze/neo-2025-05-02_2025-05-09.json retrieved from 'neo' bucket
+INFO:__main__:Mode: silver......transforming
+INFO:__main__:JSON converted to pyspark DataFrame
+INFO:__main__:Mode: silver......loading
+INFO:__main__:Successfully connected to Minio at localhost:9000
+INFO:__main__:Mode: bronze......extracting
+INFO:__main__:JSON data file extracted from https://api.nasa.gov/neo/rest/v1/feed?
+INFO:__main__:Mode: bronze......transforming
+INFO:__main__:No bronze transformation implemented
+INFO:__main__:Mode: bronze......loading
+INFO:__main__:JSON file successfully uploaded as bronze/neo-2025-05-02_2025-05-09.json in bucket neo
+INFO:__main__:Mode: silver......extracting
+INFO:__main__:bronze/neo-2025-05-02_2025-05-09.json retrieved from 'neo' bucket
+INFO:__main__:Mode: silver......transforming
+INFO:__main__:JSON converted to pyspark DataFrame
+INFO:__main__:Mode: silver......loading
+INFO:__main__:Updated asteroids table in the nasa_neo database at silver/ in bucket neo
