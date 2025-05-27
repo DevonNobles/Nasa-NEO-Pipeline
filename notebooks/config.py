@@ -1,8 +1,13 @@
+# NASA Open API NEO config
+NASA_NEO_URI='https://api.nasa.gov/neo/rest/v1/feed?'
+NASA_NEO_API_KEY='Sfn0wfG6FG6E3D5Hu8MrxSja38yMXftWqboKv6ZH'
+
 # MinIO environment variables
 MINIO_ROOT_USER='minioadmin'
 MINIO_ROOT_PASSWORD='minioadmin'
 MINIO_VOLUMES='/mnt/data'
 MINIO_OPTS='--console-address :9001'
+MINIO_ENDPOINT='localhost:9000'
 
 # Pyiceberg config
 ICEBERG_JAR = 'iceberg-spark-runtime-3.4_2.12-1.4.3.jar'
