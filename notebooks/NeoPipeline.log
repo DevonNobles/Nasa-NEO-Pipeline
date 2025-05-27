@@ -19,8 +19,8 @@ INFO:__main__:Starting data load for mode: bronze
 DEBUG:urllib3.connectionpool:http://localhost:9000 "GET /neo?location= HTTP/1.1" 200 0
 DEBUG:urllib3.connectionpool:http://localhost:9000 "PUT /neo/bronze/neo-2025-05-02_2025-05-09.json HTTP/1.1" 200 0
 DEBUG:__main__:Queue operation: mode=in, object_name=bronze/neo-2025-05-02_2025-05-09.json
-INFO:queue_manager:Adding 'bronze/neo-2025-05-02_2025-05-09.json' to queue 'queue'
-INFO:queue_manager:Successfully added 'bronze/neo-2025-05-02_2025-05-09.json' to queue
+INFO:src.queue_manager:Adding 'bronze/neo-2025-05-02_2025-05-09.json' to queue 'queue'
+INFO:src.queue_manager:Successfully added 'bronze/neo-2025-05-02_2025-05-09.json' to queue
 INFO:__main__:Successfully stored bronze/neo-2025-05-02_2025-05-09.json and added to queue
 INFO:__main__:Data load completed successfully for mode: bronze
 DEBUG:__main__:Initializing NeoApiClient for date range 2025-05-02 to 2025-05-09
@@ -28,8 +28,8 @@ DEBUG:__main__:NeoApiClient initialized for bucket 'neo' in silver mode
 INFO:__main__:Starting data extraction for mode: silver
 DEBUG:__main__:Extracting data from bronze storage
 DEBUG:__main__:Queue operation: mode=out, object_name=None
-DEBUG:queue_manager:Getting item from queue 'queue'
-INFO:queue_manager:Retrieved 'bronze/neo-2025-05-02_2025-05-09.json' from queue
+DEBUG:src.queue_manager:Getting item from queue 'queue'
+INFO:src.queue_manager:Retrieved 'bronze/neo-2025-05-02_2025-05-09.json' from queue
 DEBUG:__main__:Retrieving object: bronze/neo-2025-05-02_2025-05-09.json
 DEBUG:urllib3.connectionpool:http://localhost:9000 "GET /neo/bronze/neo-2025-05-02_2025-05-09.json HTTP/1.1" 200 154539
 INFO:__main__:Successfully extracted object 'bronze/neo-2025-05-02_2025-05-09.json' from bronze storage
@@ -45,7 +45,7 @@ DEBUG:__main__:Built configuration with 15 settings
 INFO:__main__:Creating Spark session for mode 'silver' (attempt 1/3)
 DEBUG:py4j.java_gateway:GatewayClient.address is deprecated and will be removed in version 1.0. Use GatewayParameters instead.
 DEBUG:py4j.clientserver:Command to send: A
-bcd61491dd6617e0f449e419c99ec27a18ebcebb5872d91518387fdb8d13b09c
+98e5b5ffc85ae6fb9867a100d1a881313fb8c2c90b08bca1079081e08c27846d
 
 DEBUG:py4j.clientserver:Answer received: !yv
 DEBUG:py4j.clientserver:Command to send: j
@@ -379,13 +379,13 @@ o20
 _1
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysspark.hadoop.fs.s3a.path.style.access
+DEBUG:py4j.clientserver:Answer received: !ysspark.app.submitTime
 DEBUG:py4j.clientserver:Command to send: c
 o20
 _2
 e
 
-DEBUG:py4j.clientserver:Answer received: !ystrue
+DEBUG:py4j.clientserver:Answer received: !ys1748317902916
 DEBUG:py4j.clientserver:Command to send: a
 e
 o18
@@ -404,13 +404,13 @@ o21
 _1
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysspark.sql.catalog.silver_catalog.type
+DEBUG:py4j.clientserver:Answer received: !ysspark.hadoop.fs.s3a.path.style.access
 DEBUG:py4j.clientserver:Command to send: c
 o21
 _2
 e
 
-DEBUG:py4j.clientserver:Answer received: !yshadoop
+DEBUG:py4j.clientserver:Answer received: !ystrue
 DEBUG:py4j.clientserver:Command to send: a
 e
 o18
@@ -429,13 +429,13 @@ o22
 _1
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysspark.jars
+DEBUG:py4j.clientserver:Answer received: !ysspark.sql.catalog.silver_catalog.type
 DEBUG:py4j.clientserver:Command to send: c
 o22
 _2
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysjars/iceberg-spark-runtime-3.4_2.12-1.4.3.jar,jars/hadoop-aws-3.3.4.jar,jars/aws-java-sdk-bundle-1.12.262.jar
+DEBUG:py4j.clientserver:Answer received: !yshadoop
 DEBUG:py4j.clientserver:Command to send: a
 e
 o18
@@ -454,13 +454,13 @@ o23
 _1
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysspark.app.name
+DEBUG:py4j.clientserver:Answer received: !ysspark.jars
 DEBUG:py4j.clientserver:Command to send: c
 o23
 _2
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysNASA_NEO_Silver_Data
+DEBUG:py4j.clientserver:Answer received: !ysjars/iceberg-spark-runtime-3.4_2.12-1.4.3.jar,jars/hadoop-aws-3.3.4.jar,jars/aws-java-sdk-bundle-1.12.262.jar
 DEBUG:py4j.clientserver:Command to send: a
 e
 o18
@@ -479,13 +479,13 @@ o24
 _1
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysspark.app.submitTime
+DEBUG:py4j.clientserver:Answer received: !ysspark.app.name
 DEBUG:py4j.clientserver:Command to send: c
 o24
 _2
 e
 
-DEBUG:py4j.clientserver:Answer received: !ys1748307483739
+DEBUG:py4j.clientserver:Answer received: !ysNASA_NEO_Silver_Data
 DEBUG:py4j.clientserver:Command to send: a
 e
 o18
@@ -579,13 +579,13 @@ o28
 _1
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysspark.sql.extensions
+DEBUG:py4j.clientserver:Answer received: !ysspark.repl.local.jars
 DEBUG:py4j.clientserver:Command to send: c
 o28
 _2
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysorg.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions
+DEBUG:py4j.clientserver:Answer received: !ysfile:///home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline/notebooks/jars/iceberg-spark-runtime-3.4_2.12-1.4.3.jar,file:///home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline/notebooks/jars/hadoop-aws-3.3.4.jar,file:///home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline/notebooks/jars/aws-java-sdk-bundle-1.12.262.jar
 DEBUG:py4j.clientserver:Command to send: a
 e
 o18
@@ -604,13 +604,13 @@ o29
 _1
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysspark.serializer
+DEBUG:py4j.clientserver:Answer received: !ysspark.sql.extensions
 DEBUG:py4j.clientserver:Command to send: c
 o29
 _2
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysorg.apache.spark.serializer.KryoSerializer
+DEBUG:py4j.clientserver:Answer received: !ysorg.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions
 DEBUG:py4j.clientserver:Command to send: a
 e
 o18
@@ -629,13 +629,13 @@ o30
 _1
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysspark.sql.catalog.silver_catalog.warehouse
+DEBUG:py4j.clientserver:Answer received: !ysspark.serializer
 DEBUG:py4j.clientserver:Command to send: c
 o30
 _2
 e
 
-DEBUG:py4j.clientserver:Answer received: !yss3a://neo/silver
+DEBUG:py4j.clientserver:Answer received: !ysorg.apache.spark.serializer.KryoSerializer
 DEBUG:py4j.clientserver:Command to send: a
 e
 o18
@@ -654,13 +654,13 @@ o31
 _1
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysspark.hadoop.fs.s3a.impl
+DEBUG:py4j.clientserver:Answer received: !ysspark.sql.catalog.silver_catalog.warehouse
 DEBUG:py4j.clientserver:Command to send: c
 o31
 _2
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysorg.apache.hadoop.fs.s3a.S3AFileSystem
+DEBUG:py4j.clientserver:Answer received: !yss3a://neo/silver
 DEBUG:py4j.clientserver:Command to send: a
 e
 o18
@@ -679,13 +679,13 @@ o32
 _1
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysspark.repl.local.jars
+DEBUG:py4j.clientserver:Answer received: !ysspark.hadoop.fs.s3a.impl
 DEBUG:py4j.clientserver:Command to send: c
 o32
 _2
 e
 
-DEBUG:py4j.clientserver:Answer received: !ysfile:///home/fastnnefarious/Projects/PycharmProjects/nasa-neo-pipeline/notebooks/jars/iceberg-spark-runtime-3.4_2.12-1.4.3.jar,file:///home/fastnnefarious/Projects/PycharmProjects/nasa-neo-pipeline/notebooks/jars/hadoop-aws-3.3.4.jar,file:///home/fastnnefarious/Projects/PycharmProjects/nasa-neo-pipeline/notebooks/jars/aws-java-sdk-bundle-1.12.262.jar
+DEBUG:py4j.clientserver:Answer received: !ysorg.apache.hadoop.fs.s3a.S3AFileSystem
 DEBUG:py4j.clientserver:Command to send: a
 e
 o18
@@ -930,7 +930,7 @@ ro0
 e
 
 DEBUG:py4j.clientserver:Command to send: A
-bcd61491dd6617e0f449e419c99ec27a18ebcebb5872d91518387fdb8d13b09c
+98e5b5ffc85ae6fb9867a100d1a881313fb8c2c90b08bca1079081e08c27846d
 
 DEBUG:py4j.clientserver:Answer received: !yv
 DEBUG:py4j.clientserver:Command to send: m
@@ -1064,8 +1064,8 @@ DEBUG:py4j.clientserver:Answer received: !ycorg.apache.spark.api.python.PythonAc
 DEBUG:py4j.clientserver:Command to send: i
 org.apache.spark.api.python.PythonAccumulatorV2
 s127.0.0.1
-i47307
-sbcd61491dd6617e0f449e419c99ec27a18ebcebb5872d91518387fdb8d13b09c
+i35455
+s98e5b5ffc85ae6fb9867a100d1a881313fb8c2c90b08bca1079081e08c27846d
 e
 
 DEBUG:py4j.clientserver:Answer received: !yro45
@@ -1185,7 +1185,7 @@ z:org.apache.spark.SparkFiles
 getRootDirectory
 e
 
-DEBUG:py4j.clientserver:Answer received: !ys/tmp/spark-74218ce3-9c3f-4ae1-860c-33d38086a6d8/userFiles-38e7e5a3-0472-4a84-a2a3-068a49dd8486
+DEBUG:py4j.clientserver:Answer received: !ys/tmp/spark-c089aaec-f8cb-406e-b701-da6af6674ab5/userFiles-04592fb4-1ec4-438b-927a-30ca9854a045
 DEBUG:py4j.clientserver:Command to send: c
 o44
 get
@@ -1254,7 +1254,7 @@ getLocalDir
 ro48
 e
 
-DEBUG:py4j.clientserver:Answer received: !ys/tmp/spark-74218ce3-9c3f-4ae1-860c-33d38086a6d8
+DEBUG:py4j.clientserver:Answer received: !ys/tmp/spark-c089aaec-f8cb-406e-b701-da6af6674ab5
 DEBUG:py4j.clientserver:Command to send: r
 u
 org
@@ -1300,7 +1300,7 @@ DEBUG:py4j.clientserver:Answer received: !ym
 DEBUG:py4j.clientserver:Command to send: c
 z:org.apache.spark.util.Utils
 createTempDir
-s/tmp/spark-74218ce3-9c3f-4ae1-860c-33d38086a6d8
+s/tmp/spark-c089aaec-f8cb-406e-b701-da6af6674ab5
 spyspark
 e
 
@@ -1310,7 +1310,7 @@ o49
 getAbsolutePath
 e
 
-DEBUG:py4j.clientserver:Answer received: !ys/tmp/spark-74218ce3-9c3f-4ae1-860c-33d38086a6d8/pyspark-799ef1cf-ef02-4830-a1b2-0549a99e9805
+DEBUG:py4j.clientserver:Answer received: !ys/tmp/spark-c089aaec-f8cb-406e-b701-da6af6674ab5/pyspark-4bfdd5d0-1e05-4276-b0a2-5dda7a280635
 DEBUG:py4j.clientserver:Command to send: c
 o44
 get
@@ -1589,7 +1589,7 @@ DEBUG:py4j.clientserver:Answer received: !yro56
 DEBUG:py4j.clientserver:Command to send: c
 o42
 setCallSite
-scollect at /tmp/ipykernel_115822/3526148538.py:295
+scollect at /tmp/ipykernel_158075/3526148538.py:295
 e
 
 DEBUG:py4j.clientserver:Answer received: !yv
@@ -1618,7 +1618,7 @@ o57
 i0
 e
 
-DEBUG:py4j.clientserver:Answer received: !yi35355
+DEBUG:py4j.clientserver:Answer received: !yi34825
 DEBUG:py4j.clientserver:Command to send: a
 e
 o57
@@ -1631,12 +1631,12 @@ o57
 i1
 e
 
-DEBUG:py4j.clientserver:Answer received: !ys7dc1d8cbc43fc2e1b1cc4f737590dcd149da2d3f3f0bfe40c388bcc1a1be982b
+DEBUG:py4j.clientserver:Answer received: !ysbaca916bc0f0dc9afd14734fca64ef3a8523ebe1b37be7cc58a3443fb4f149cd
 DEBUG:__main__:Spark session basic functionality validated
 INFO:__main__:Successfully created Spark session: NASA_NEO_Silver_Data
-INFO:transformations:Starting JSON to DataFrame transformation
-DEBUG:transformations:Input validation passed: 8 date entries
-DEBUG:transformations:Creating DataFrame from JSON data
+INFO:src.transformations:Starting JSON to DataFrame transformation
+DEBUG:src.transformations:Input validation passed: 8 date entries
+DEBUG:src.transformations:Creating DataFrame from JSON data
 DEBUG:py4j.clientserver:Command to send: r
 u
 SparkSession
@@ -1688,7 +1688,7 @@ DEBUG:py4j.clientserver:Command to send: c
 z:org.apache.spark.api.python.PythonRDD
 readRDDFromFile
 ro42
-s/tmp/spark-74218ce3-9c3f-4ae1-860c-33d38086a6d8/pyspark-799ef1cf-ef02-4830-a1b2-0549a99e9805/tmp2ozcgyl3
+s/tmp/spark-c089aaec-f8cb-406e-b701-da6af6674ab5/pyspark-4bfdd5d0-1e05-4276-b0a2-5dda7a280635/tmpfrcyks7t
 i8
 e
 
@@ -1792,7 +1792,7 @@ e
 DEBUG:py4j.clientserver:Answer received: !ylo63
 DEBUG:py4j.clientserver:Command to send: i
 org.apache.spark.api.python.SimplePythonFunction
-jgAWVagUAAAAAAAAojB9weXNwYXJrLmNsb3VkcGlja2xlLmNsb3VkcGlja2xllIwOX21ha2VfZnVuY3Rpb26Uk5QoaACMDV9idWlsdGluX3R5cGWUk5SMCENvZGVUeXBllIWUUpQoSwJLAEsASwJLBUsTQy6VAZcAdAEAAAAAAAAAAHQDAAAAAAAAAACJAqsBAAAAAAAAfAGrAgAAAAAAAFMAlE6FlIwDbWFwlIwVZmFpbF9vbl9zdG9waXRlcmF0aW9ulIaUjAFflIwIaXRlcmF0b3KUhpSMcS9ob21lL2Zhc3RubmVmYXJpb3VzL1Byb2plY3RzL1B5Y2hhcm1Qcm9qZWN0cy9uYXNhLW5lby1waXBlbGluZS8udmVudi9saWIvcHl0aG9uMy4xMi9zaXRlLXBhY2thZ2VzL3B5c3BhcmsvcmRkLnB5lIwEZnVuY5SMFVJERC5tYXAuPGxvY2Fscz4uZnVuY5RN8QJDFviAANwTFtQXLKhR0xcvsBjTEzrQDDqUQwCUjAFmlIWUKXSUUpR9lCiMC19fcGFja2FnZV9flIwHcHlzcGFya5SMCF9fbmFtZV9flIwLcHlzcGFyay5yZGSUjAhfX2ZpbGVfX5SMcS9ob21lL2Zhc3RubmVmYXJpb3VzL1Byb2plY3RzL1B5Y2hhcm1Qcm9qZWN0cy9uYXNhLW5lby1waXBlbGluZS8udmVudi9saWIvcHl0aG9uMy4xMi9zaXRlLXBhY2thZ2VzL3B5c3BhcmsvcmRkLnB5lHVOTmgAjBBfbWFrZV9lbXB0eV9jZWxslJOUKVKUhZR0lFKUjCRweXNwYXJrLmNsb3VkcGlja2xlLmNsb3VkcGlja2xlX2Zhc3SUjBJfZnVuY3Rpb25fc2V0c3RhdGWUk5RoJX2UfZQoaBxoEYwMX19xdWFsbmFtZV9flGgSjA9fX2Fubm90YXRpb25zX1+UfZQoaA2MCGJ1aWx0aW5zlIwDaW50lJOUaA6MCV9vcGVyYXRvcpSMB2dldGl0ZW2Uk5SMBnR5cGluZ5SMCEl0ZXJhYmxllJOUjAhidWlsdGluc5SMB2dldGF0dHKUk5RoAIwJc3ViaW1wb3J0lJOUaB2FlFKUjAFUlIaUUpSGlFKUjAZyZXR1cm6UaDNoNmg5aD2MAVWUhpRSlIaUUpR1jA5fX2t3ZGVmYXVsdHNfX5ROjAxfX2RlZmF1bHRzX1+UTowKX19tb2R1bGVfX5RoHYwHX19kb2NfX5ROjAtfX2Nsb3N1cmVfX5RoAIwKX21ha2VfY2VsbJSTlGgCKGgHKEsBSwBLAEsBSwFLE0MGlwB8AFMAlGgJKYwBeJSFlGgQjAg8bGFtYmRhPpSMIlJERC5fcmVzZXJpYWxpemUuPGxvY2Fscz4uPGxhbWJkYT6UTSUFQwaAAKBhgACUaBQpKXSUUpRoGU5OTnSUUpRoKGhZfZR9lChoHGhTaCtoVGgsfZRoSU5oSk5oS2gdaExOaE1OjBdfY2xvdWRwaWNrbGVfc3VibW9kdWxlc5RdlIwLX19nbG9iYWxzX1+UfZR1hpSGUjCFlFKUhZRoXV2UaF99lGgLjAxweXNwYXJrLnV0aWyUaAuTlHN1hpSGUjBOjBNweXNwYXJrLnNlcmlhbGl6ZXJzlIwRQmF0Y2hlZFNlcmlhbGl6ZXKUk5QpgZR9lCiMCnNlcmlhbGl6ZXKUaGqMFUNsb3VkUGlja2xlU2VyaWFsaXplcpSTlCmBlIwJYmF0Y2hTaXpllEsBdWJoaowVQXV0b0JhdGNoZWRTZXJpYWxpemVylJOUKYGUfZQoaG9ocSmBlGhzSwCMCGJlc3RTaXpllEoAAAEAdWJ0lC4=
+jgAWV+AQAAAAAAAAojB9weXNwYXJrLmNsb3VkcGlja2xlLmNsb3VkcGlja2xllIwOX21ha2VfZnVuY3Rpb26Uk5QoaACMDV9idWlsdGluX3R5cGWUk5SMCENvZGVUeXBllIWUUpQoSwJLAEsASwJLBUsTQy6VAZcAdAEAAAAAAAAAAHQDAAAAAAAAAACJAqsBAAAAAAAAfAGrAgAAAAAAAFMAlE6FlIwDbWFwlIwVZmFpbF9vbl9zdG9waXRlcmF0aW9ulIaUjAFflIwIaXRlcmF0b3KUhpSMcS9ob21lL2Zhc3RubmVmYXJpb3VzL1Byb2plY3RzL1B5Y2hhcm1Qcm9qZWN0cy9uYXNhX25lb19waXBlbGluZS8udmVudi9saWIvcHl0aG9uMy4xMi9zaXRlLXBhY2thZ2VzL3B5c3BhcmsvcmRkLnB5lIwEZnVuY5SMFVJERC5tYXAuPGxvY2Fscz4uZnVuY5RN8QJDFviAANwTFtQXLKhR0xcvsBjTEzrQDDqUQwCUjAFmlIWUKXSUUpR9lCiMC19fcGFja2FnZV9flIwHcHlzcGFya5SMCF9fbmFtZV9flIwLcHlzcGFyay5yZGSUjAhfX2ZpbGVfX5RoEHVOTmgAjBBfbWFrZV9lbXB0eV9jZWxslJOUKVKUhZR0lFKUjCRweXNwYXJrLmNsb3VkcGlja2xlLmNsb3VkcGlja2xlX2Zhc3SUjBJfZnVuY3Rpb25fc2V0c3RhdGWUk5RoJH2UfZQoaBxoEYwMX19xdWFsbmFtZV9flGgSjA9fX2Fubm90YXRpb25zX1+UfZQoaA2MCGJ1aWx0aW5zlIwDaW50lJOUaA6MCV9vcGVyYXRvcpSMB2dldGl0ZW2Uk5SMBnR5cGluZ5SMCEl0ZXJhYmxllJOUjAhidWlsdGluc5SMB2dldGF0dHKUk5RoAIwJc3ViaW1wb3J0lJOUaB2FlFKUjAFUlIaUUpSGlFKUjAZyZXR1cm6UaDJoNWg4aDyMAVWUhpRSlIaUUpR1jA5fX2t3ZGVmYXVsdHNfX5ROjAxfX2RlZmF1bHRzX1+UTowKX19tb2R1bGVfX5RoHYwHX19kb2NfX5ROjAtfX2Nsb3N1cmVfX5RoAIwKX21ha2VfY2VsbJSTlGgCKGgHKEsBSwBLAEsBSwFLE0MGlwB8AFMAlGgJKYwBeJSFlGgQjAg8bGFtYmRhPpSMIlJERC5fcmVzZXJpYWxpemUuPGxvY2Fscz4uPGxhbWJkYT6UTSUFQwaAAKBhgACUaBQpKXSUUpRoGU5OTnSUUpRoJ2hYfZR9lChoHGhSaCpoU2grfZRoSE5oSU5oSmgdaEtOaExOjBdfY2xvdWRwaWNrbGVfc3VibW9kdWxlc5RdlIwLX19nbG9iYWxzX1+UfZR1hpSGUjCFlFKUhZRoXF2UaF59lGgLjAxweXNwYXJrLnV0aWyUaAuTlHN1hpSGUjBOjBNweXNwYXJrLnNlcmlhbGl6ZXJzlIwRQmF0Y2hlZFNlcmlhbGl6ZXKUk5QpgZR9lCiMCnNlcmlhbGl6ZXKUaGmMFUNsb3VkUGlja2xlU2VyaWFsaXplcpSTlCmBlIwJYmF0Y2hTaXpllEsBdWJoaYwVQXV0b0JhdGNoZWRTZXJpYWxpemVylJOUKYGUfZQoaG5ocCmBlGhySwCMCGJlc3RTaXpllEoAAAEAdWJ0lC4=
 ro61
 ro62
 spython3
@@ -1859,7 +1859,7 @@ s{"fields":[{"metadata":{},"name":"element_count","nullable":true,"type":"intege
 e
 
 DEBUG:py4j.clientserver:Answer received: !yro71
-DEBUG:transformations:Exploding date entries from near_earth_objects map
+DEBUG:src.transformations:Exploding date entries from near_earth_objects map
 DEBUG:py4j.clientserver:Command to send: r
 u
 functions
@@ -2105,248 +2105,8 @@ select
 ro86
 e
 
-DEBUG:py4j.clientserver:Command to send: m
-d
-o57
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o0
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o19
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o20
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o21
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o22
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o23
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o24
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o25
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o26
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o27
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o28
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o29
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o30
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o31
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o32
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o33
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o34
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o35
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o36
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o37
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o38
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o39
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o40
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o41
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o43
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o46
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o47
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o48
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o49
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o50
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o51
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o55
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o56
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o61
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o62
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o63
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o74
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o77
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o85
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
 DEBUG:py4j.clientserver:Answer received: !yro87
-DEBUG:transformations:Extracting asteroid properties
+DEBUG:src.transformations:Extracting asteroid properties
 DEBUG:py4j.clientserver:Command to send: r
 u
 functions
@@ -2954,7 +2714,7 @@ ro118
 e
 
 DEBUG:py4j.clientserver:Answer received: !yro119
-DEBUG:transformations:Extracting close approach data
+DEBUG:src.transformations:Extracting close approach data
 DEBUG:py4j.clientserver:Command to send: r
 u
 functions
@@ -3793,7 +3553,7 @@ ro155
 e
 
 DEBUG:py4j.clientserver:Answer received: !yro156
-DEBUG:transformations:Converting data types
+DEBUG:src.transformations:Converting data types
 DEBUG:py4j.clientserver:Command to send: r
 u
 functions
@@ -4755,6 +4515,246 @@ e
 
 DEBUG:py4j.clientserver:Command to send: m
 d
+o57
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o0
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o19
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o20
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o21
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o22
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o23
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o24
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o25
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o26
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o27
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o28
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o29
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o30
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o31
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o32
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o33
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o34
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o35
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o36
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o37
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o38
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o39
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o40
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o41
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o43
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o46
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o47
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o48
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o49
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o50
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o51
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o55
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o56
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o61
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o62
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o63
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o74
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o77
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o85
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
 o117
 e
 
@@ -4780,12 +4780,6 @@ DEBUG:py4j.clientserver:Answer received: !yv
 DEBUG:py4j.clientserver:Command to send: m
 d
 o186
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o195
 e
 
 DEBUG:py4j.clientserver:Answer received: !yv
@@ -5463,12 +5457,6 @@ e
 DEBUG:py4j.clientserver:Answer received: !yv
 DEBUG:py4j.clientserver:Command to send: m
 d
-o184
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
 o185
 e
 
@@ -5493,13 +5481,7 @@ e
 DEBUG:py4j.clientserver:Answer received: !yv
 DEBUG:py4j.clientserver:Command to send: m
 d
-o192
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o194
+o195
 e
 
 DEBUG:py4j.clientserver:Answer received: !yv
@@ -5522,7 +5504,7 @@ e
 
 DEBUG:py4j.clientserver:Answer received: !yv
 DEBUG:py4j.clientserver:Answer received: !yL123
-INFO:transformations:Successfully transformed JSON to DataFrame with 123 records
+INFO:src.transformations:Successfully transformed JSON to DataFrame with 123 records
 INFO:__main__:Data transformation completed successfully for mode: silver
 INFO:__main__:Starting data load for mode: silver
 DEBUG:py4j.clientserver:Command to send: r
@@ -5804,23 +5786,11 @@ o242
 count
 e
 
-DEBUG:py4j.clientserver:Command to send: m
-d
-o238
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
-DEBUG:py4j.clientserver:Command to send: m
-d
-o240
-e
-
-DEBUG:py4j.clientserver:Answer received: !yv
 DEBUG:py4j.clientserver:Answer received: !yL123
 INFO:__main__:Successfully extracted 123 records from silver tables
 INFO:__main__:Data extraction completed successfully for mode: gold
 INFO:__main__:Starting data transformation for mode: gold
-INFO:transformations:Preparing analytics dataset
+INFO:src.transformations:Preparing analytics dataset
 DEBUG:py4j.clientserver:Command to send: r
 u
 functions
@@ -6699,7 +6669,7 @@ DEBUG:py4j.clientserver:Answer received: !yro276
 DEBUG:py4j.clientserver:Command to send: c
 o42
 setCallSite
-scollect at /tmp/ipykernel_115822/3526148538.py:295
+scollect at /tmp/ipykernel_158075/3526148538.py:295
 e
 
 DEBUG:py4j.clientserver:Answer received: !yv
@@ -6728,7 +6698,7 @@ o277
 i0
 e
 
-DEBUG:py4j.clientserver:Answer received: !yi44613
+DEBUG:py4j.clientserver:Answer received: !yi38813
 DEBUG:py4j.clientserver:Command to send: a
 e
 o277
@@ -6741,7 +6711,7 @@ o277
 i1
 e
 
-DEBUG:py4j.clientserver:Answer received: !ys7dc1d8cbc43fc2e1b1cc4f737590dcd149da2d3f3f0bfe40c388bcc1a1be982b
+DEBUG:py4j.clientserver:Answer received: !ysbaca916bc0f0dc9afd14734fca64ef3a8523ebe1b37be7cc58a3443fb4f149cd
 DEBUG:__main__:Spark session basic functionality validated
 INFO:__main__:Successfully created Spark session: NASA_NEO_Silver_Data
 DEBUG:py4j.clientserver:Command to send: r
@@ -6845,6 +6815,18 @@ o281
 createOrReplace
 e
 
+DEBUG:py4j.clientserver:Command to send: m
+d
+o238
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
+DEBUG:py4j.clientserver:Command to send: m
+d
+o240
+e
+
+DEBUG:py4j.clientserver:Answer received: !yv
 DEBUG:py4j.clientserver:Command to send: m
 d
 o263
