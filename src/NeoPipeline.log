@@ -1,0 +1,41 @@
+INFO:__main__:Creating MinIO client for endpoint: localhost:9000
+DEBUG:__main__:MinIO client instance created successfully
+INFO:__main__:Validating MinIO connection...
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:9000
+DEBUG:urllib3.connectionpool:http://localhost:9000 "GET / HTTP/1.1" 200 0
+INFO:__main__:MinIO connection validated successfully
+INFO:__main__:Creating MinIO client for endpoint: localhost:9000
+DEBUG:__main__:MinIO client instance created successfully
+INFO:__main__:Validating MinIO connection...
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:9000
+DEBUG:urllib3.connectionpool:http://localhost:9000 "GET / HTTP/1.1" 200 0
+INFO:__main__:MinIO connection validated successfully
+INFO:__main__:Creating MinIO client for endpoint: localhost:9000
+DEBUG:__main__:MinIO client instance created successfully
+INFO:__main__:Validating MinIO connection...
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:9000
+DEBUG:urllib3.connectionpool:http://localhost:9000 "GET / HTTP/1.1" 200 0
+INFO:__main__:MinIO connection validated successfully
+DEBUG:urllib3.connectionpool:http://localhost:9000 "GET /not_exists?location= HTTP/1.1" 400 0
+INFO:__main__:Creating MinIO client for endpoint: localhost:9000
+DEBUG:__main__:MinIO client instance created successfully
+INFO:__main__:Validating MinIO connection...
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:9000
+DEBUG:urllib3.connectionpool:http://localhost:9000 "GET / HTTP/1.1" 200 0
+INFO:__main__:MinIO connection validated successfully
+DEBUG:urllib3.connectionpool:http://localhost:9000 "GET /neo?location= HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:http://localhost:9000 "GET /neo?delimiter=%2F&encoding-type=url&list-type=2&max-keys=1000&prefix= HTTP/1.1" 200 0
+INFO:__main__:Creating MinIO client for endpoint: localhost:9000
+DEBUG:__main__:MinIO client instance created successfully
+INFO:__main__:Validating MinIO connection...
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:9000
+DEBUG:urllib3.connectionpool:http://localhost:9000 "GET / HTTP/1.1" 200 0
+INFO:__main__:MinIO connection validated successfully
+DEBUG:urllib3.connectionpool:http://localhost:9000 "GET /neo?location= HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:http://localhost:9000 "GET /neo?delimiter=%2F&encoding-type=url&list-type=2&max-keys=1000&prefix= HTTP/1.1" 200 0
+INFO:__main__:Creating MinIO client for endpoint: localhost:9000
+DEBUG:__main__:MinIO client instance created successfully
+INFO:__main__:Validating MinIO connection...
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:9000
+DEBUG:urllib3.connectionpool:http://localhost:9000 "GET / HTTP/1.1" 200 0
+INFO:__main__:MinIO connection validated successfully

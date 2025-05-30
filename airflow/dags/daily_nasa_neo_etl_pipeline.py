@@ -4,15 +4,16 @@ from airflow.providers.papermill.operators.papermill import PapermillOperator
 from src.config import NASA_NEO_API_KEY, NASA_NEO_URI
 from src.minio_client import *
 import os
-import logging
 
-logging.basicConfig(filename='NeoPipeline.log', level=logging.DEBUG)
-logger = logging.getLogger(__name__)
-
+# Get path to the project directory
 pwd = os.getcwd()
 path = os.path.dirname(pwd)
 path = os.path.dirname(path)
 
+# Set earliest date for data retrieval
+# The bronze task will request all data between this date and today's date
+# Only 7 days can be requested at one time. Only 10,000 requests per day
+earliest_date=datetime(2025, 1, 1)
 
 # NASA NEO API Pipeline DAG
 with DAG(
@@ -23,8 +24,22 @@ with DAG(
     catchup=False,
     tags={'nasa', 'neo', 'data-pipeline'}
 ) as dag:
+    minio_client = create_minio_client()
 
-    def make_tasks() -> list:
+    def make_tasks(begin_date: datetime,
+                   end_date:
+                   datetime=datetime.now(),
+                   tasks: list=[]) -> list:
+        if True:
+            return tasks
+        try:
+            current_objs = minio_client.list_objects('neo')
+        except S3Error as e:
+            logger.info(f"Neo: {e}")
+
+        first = begin_date.strftime("%Y-%m-%d")
+        last = end_date.strftime("%Y-%m-%d")
+
         # Bronze mode
         bronze_task = PapermillOperator(
             task_id="Ingest NASA NEO API data",
@@ -32,14 +47,13 @@ with DAG(
             parameters={
             'api_key_param': NASA_NEO_API_KEY,
             'api_uri_param': NASA_NEO_URI,
-            'start_date_param': '2025-05-02',
-            'end_date_param': '2025-05-09',
+            'start_date_param': first,
+            'end_date_param': last,
             'bucket_name_param': 'neo',
             'mode': 'bronze'
             }
         )
 
-        return [bronze_task]
 
     bronze_tasks = make_tasks()
 
@@ -69,5 +83,4 @@ with DAG(
 
 
 if __name__ =="__main__":
-    minio_client = create_minio_client()
     bronze_tasks >> silver_task >> gold_task
