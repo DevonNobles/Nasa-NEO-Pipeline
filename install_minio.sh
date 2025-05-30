@@ -44,6 +44,14 @@ else
 EOF
 fi
 
+# Install MinIO python module
+if pip list | grep minio > /dev/null;then
+    echo "minio in pip list"
+else
+    pip install minio
+    echo "minio installed with pip"
+fi
+
 # Install miniIO Client
 if command -v mc &> /dev/null; then
   echo "minioIO Client already installed"
