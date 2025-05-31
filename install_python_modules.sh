@@ -41,3 +41,11 @@ else
     pip install notebook
     echo "Jupyter Notebook installed with pip"
 fi
+
+# Install Regex python module
+if pip list | grep regex > /dev/null;then
+    echo "Regex in pip list"
+else
+    pip install regex
+    echo "Regex installed with pip"
+fi

@@ -83,6 +83,9 @@ echo""
 CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
 echo "Using constraints: $CONSTRAINT_URL"
 
+# Export PYTHONPATH to include your project directory
+export PYTHONPATH="/home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline:$PYTHONPATH"
+
 # Install Airflow
 echo ""
 echo "Installing Apache Airflow..."
@@ -107,7 +110,7 @@ fi
 echo ""
 echo "Installing Airflow database..."
 if airflow standalone & then
-    mkdir -p $AIRFLOW_HOME && echo "AIRFLOW_PID=$!" > "$AIRFLOW_HOME/service_pid.txt"
+    mkdir -p "$AIRFLOW_HOME" && echo "AIRFLOW_PID=$!" > "$AIRFLOW_HOME/service_pid.txt"
     echo "✓ Airflow standalone installed"
 else
     echo "✗ Airflow standalone failed to install"
@@ -133,20 +136,39 @@ create_stop_script() {
     cat > "$AIRFLOW_HOME/stop_airflow.sh" << 'EOF'
 #!/bin/bash
 
-if [[ -f "$(dirname $0)/service_pid.txt" ]]; then
-    echo "Stopping Airflow services..."
-    source "$(dirname $0)/service_pid.txt"
+echo "Current Airflow processes:"
+pgrep -f airflow
+read -p "Kill these processes? (y/N): " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  if [[ -f "$(dirname "$0")/service_pid.txt" ]]; then
+      echo "Stopping Airflow services..."
+      source "$(dirname "$0")/service_pid.txt"
 
-    if [[ -n $AIRFLOW_PID ]] && kill -0 "$AIRFLOW_PID" 2> /dev/null; then # if AIRFLOW_PID not empty and PID exists
-        kill "$AIRFLOW_PID"
-        echo "PID: $AIRFLOW_PID stopped"
+      if [[ -n $AIRFLOW_PID ]] && kill -0 "$AIRFLOW_PID" 2> /dev/null; then # if AIRFLOW_PID not empty and PID exists
+          kill "$AIRFLOW_PID"
+          echo "PID: $AIRFLOW_PID stopped"
+      else
+          echo "PID not found"
+      fi
+
+      rm -f "$(dirname "$0")/service_pid.txt"
+  fi
+
+  echo
+  echo "Killing Airflow processes gracefully (SIGTERM)..."
+    pkill -f airflow
+
+    # Wait a few seconds
+    sleep 3
+
+  REMAINING=$(pgrep -f airflow)
+    if [ -z "$REMAINING" ]; then
+        echo "All Airflow processes killed successfully."
     else
-        echo "Airflow services not running or PID not found"
+        echo "Some processes still running!"
+        echo "Try pkill -9 -f airflow to force killing (SIGKILL)"
     fi
-
-    # rm -f "$AIRFLOW_HOME/service_pid.txt"
-else
-    echo "No PID file found. Services may not be running."
 fi
 EOF
 
