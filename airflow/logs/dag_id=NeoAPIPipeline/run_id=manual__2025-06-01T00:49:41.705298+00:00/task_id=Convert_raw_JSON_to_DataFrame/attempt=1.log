@@ -1,0 +1,360 @@
+{"timestamp":"2025-06-01T00:49:46.614244","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-06-01T00:49:46.614737","level":"info","event":"Filling up the DagBag from /home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline/airflow/dags/daily_nasa_neo_etl_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-06-01T00:49:47.263032","level":"info","event":"Creating MinIO client for endpoint: localhost:9000","logger":"src.minio_client"}
+{"timestamp":"2025-06-01T00:49:47.263276","level":"info","event":"Validating MinIO connection...","logger":"src.minio_client"}
+{"timestamp":"2025-06-01T00:49:47.265543","level":"info","event":"MinIO connection validated successfully","logger":"src.minio_client"}
+{"timestamp":"2025-06-01T00:49:47.279039Z","level":"info","event":"[('2025-05-01', '2025-05-07'), ('2025-05-29', '2025-05-31')]","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T00:49:47.283407","level":"info","event":"Input Notebook:  /home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline/notebooks/NeoApiClient.ipynb","logger":"papermill"}
+{"timestamp":"2025-06-01T00:49:47.283506","level":"info","event":"Output Notebook: /home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline/notebooks/tmp/silver/2025-05-31 19:49:47-OUT_NeoApiClient.ipynb","logger":"papermill"}
+{"timestamp":"2025-06-01T00:49:48.097665","level":"info","event":"Executing notebook with kernel: nasa_spark_kernel","logger":"papermill"}
+{"timestamp":"2025-06-01T00:49:49.727195Z","level":"error","event":"25/05/31 19:49:49 WARN Utils: Your hostname, newlife resolves to a loopback address: 127.0.1.1; using 192.168.0.196 instead (on interface wlp0s20f3)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:49.728558Z","level":"error","event":"25/05/31 19:49:49 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:49.865997Z","level":"info","event":":: loading settings :: url = jar:file:/home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline/.venv/lib/python3.12/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T00:49:49.933314Z","level":"error","event":"Ivy Default Cache set to: /home/fastnnefarious/.ivy2/cache","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:49.933553Z","level":"error","event":"The jars for the packages stored in: /home/fastnnefarious/.ivy2/jars","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:49.938289Z","level":"error","event":"org.apache.iceberg#iceberg-spark-runtime-3.5_2.12 added as a dependency","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:49.938436Z","level":"error","event":"org.apache.hadoop#hadoop-aws added as a dependency","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:49.938464Z","level":"error","event":"org.apache.hadoop#hadoop-common added as a dependency","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:49.938486Z","level":"error","event":"com.amazonaws#aws-java-sdk-bundle added as a dependency","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:49.939336Z","level":"error","event":":: resolving dependencies :: org.apache.spark#spark-submit-parent-5e9a5076-cdfe-424c-90c9-e7ec3aa73774;1.0","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:49.939446Z","level":"error","event":"\tconfs: [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.036155Z","level":"error","event":"\tfound org.apache.iceberg#iceberg-spark-runtime-3.5_2.12;1.4.3 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.071492Z","level":"error","event":"\tfound org.apache.hadoop#hadoop-aws;3.3.4 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.102356Z","level":"error","event":"\tfound org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.128518Z","level":"error","event":"\tfound org.apache.hadoop#hadoop-common;3.3.4 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.157106Z","level":"error","event":"\tfound org.apache.hadoop.thirdparty#hadoop-shaded-protobuf_3_7;1.1.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.184957Z","level":"error","event":"\tfound org.apache.hadoop#hadoop-annotations;3.3.4 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.214301Z","level":"error","event":"\tfound org.apache.hadoop.thirdparty#hadoop-shaded-guava;1.1.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.257334Z","level":"error","event":"\tfound com.google.guava#guava;27.0-jre in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.300036Z","level":"error","event":"\tfound com.google.guava#failureaccess;1.0 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.349335Z","level":"error","event":"\tfound com.google.guava#listenablefuture;9999.0-empty-to-avoid-conflict-with-guava in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.362436Z","level":"error","event":"\tfound com.google.code.findbugs#jsr305;3.0.2 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.413096Z","level":"error","event":"\tfound org.checkerframework#checker-qual;2.5.2 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.441397Z","level":"error","event":"\tfound com.google.j2objc#j2objc-annotations;1.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.477126Z","level":"error","event":"\tfound org.codehaus.mojo#animal-sniffer-annotations;1.17 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.504579Z","level":"error","event":"\tfound commons-cli#commons-cli;1.2 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.516814Z","level":"error","event":"\tfound org.apache.commons#commons-math3;3.1.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.527928Z","level":"error","event":"\tfound org.apache.httpcomponents#httpclient;4.5.13 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.548066Z","level":"error","event":"\tfound org.apache.httpcomponents#httpcore;4.4.13 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.571167Z","level":"error","event":"\tfound commons-logging#commons-logging;1.1.3 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.591417Z","level":"error","event":"\tfound commons-codec#commons-codec;1.15 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.622917Z","level":"error","event":"\tfound commons-io#commons-io;2.8.0 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.639881Z","level":"error","event":"\tfound commons-net#commons-net;3.6 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.656493Z","level":"error","event":"\tfound commons-collections#commons-collections;3.2.2 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.672953Z","level":"error","event":"\tfound javax.servlet#javax.servlet-api;3.1.0 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.708544Z","level":"error","event":"\tfound org.eclipse.jetty#jetty-server;9.4.43.v20210629 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.747875Z","level":"error","event":"\tfound org.eclipse.jetty#jetty-http;9.4.43.v20210629 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.777178Z","level":"error","event":"\tfound org.eclipse.jetty#jetty-util;9.4.43.v20210629 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.819557Z","level":"error","event":"\tfound org.eclipse.jetty#jetty-io;9.4.43.v20210629 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.868156Z","level":"error","event":"\tfound org.eclipse.jetty#jetty-servlet;9.4.43.v20210629 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.906092Z","level":"error","event":"\tfound org.eclipse.jetty#jetty-security;9.4.43.v20210629 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.937236Z","level":"error","event":"\tfound org.eclipse.jetty#jetty-util-ajax;9.4.43.v20210629 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:50.983458Z","level":"error","event":"\tfound org.eclipse.jetty#jetty-webapp;9.4.43.v20210629 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.023435Z","level":"error","event":"\tfound org.eclipse.jetty#jetty-xml;9.4.43.v20210629 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.067010Z","level":"error","event":"\tfound com.sun.jersey#jersey-core;1.19 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.096475Z","level":"error","event":"\tfound javax.ws.rs#jsr311-api;1.1.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.134042Z","level":"error","event":"\tfound com.sun.jersey#jersey-servlet;1.19 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.171260Z","level":"error","event":"\tfound com.sun.jersey#jersey-server;1.19 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.201040Z","level":"error","event":"\tfound com.sun.jersey#jersey-json;1.19 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.226986Z","level":"error","event":"\tfound org.codehaus.jettison#jettison;1.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.250643Z","level":"error","event":"\tfound com.sun.xml.bind#jaxb-impl;2.2.3-1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.264315Z","level":"error","event":"\tfound javax.xml.bind#jaxb-api;2.2.11 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.277931Z","level":"error","event":"\tfound org.codehaus.jackson#jackson-core-asl;1.9.13 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.298492Z","level":"error","event":"\tfound org.codehaus.jackson#jackson-mapper-asl;1.9.13 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.319530Z","level":"error","event":"\tfound org.codehaus.jackson#jackson-jaxrs;1.9.13 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.332755Z","level":"error","event":"\tfound org.codehaus.jackson#jackson-xc;1.9.13 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.344505Z","level":"error","event":"\tfound ch.qos.reload4j#reload4j;1.2.22 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.353107Z","level":"error","event":"\tfound commons-beanutils#commons-beanutils;1.9.4 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.365172Z","level":"error","event":"\tfound org.apache.commons#commons-configuration2;2.1.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.378684Z","level":"error","event":"\tfound org.apache.commons#commons-lang3;3.12.0 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.390284Z","level":"error","event":"\tfound org.apache.commons#commons-text;1.4 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.402774Z","level":"error","event":"\tfound org.slf4j#slf4j-api;1.7.36 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.412644Z","level":"error","event":"\tfound org.slf4j#slf4j-reload4j;1.7.36 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.423451Z","level":"error","event":"\tfound org.apache.avro#avro;1.7.7 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.437823Z","level":"error","event":"\tfound com.thoughtworks.paranamer#paranamer;2.3 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.447624Z","level":"error","event":"\tfound org.xerial.snappy#snappy-java;1.1.8.2 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.459640Z","level":"error","event":"\tfound org.apache.commons#commons-compress;1.21 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.471398Z","level":"error","event":"\tfound com.google.re2j#re2j;1.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.485007Z","level":"error","event":"\tfound com.google.protobuf#protobuf-java;2.5.0 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.500961Z","level":"error","event":"\tfound com.google.code.gson#gson;2.8.9 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.528973Z","level":"error","event":"\tfound org.apache.hadoop#hadoop-auth;3.3.4 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.544157Z","level":"error","event":"\tfound com.nimbusds#nimbus-jose-jwt;9.8.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.557338Z","level":"error","event":"\tfound com.github.stephenc.jcip#jcip-annotations;1.0-1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.570221Z","level":"error","event":"\tfound net.minidev#json-smart;2.4.7 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.586655Z","level":"error","event":"\tfound net.minidev#accessors-smart;2.4.7 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.607567Z","level":"error","event":"\tfound org.ow2.asm#asm;5.0.4 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.630204Z","level":"error","event":"\tfound org.apache.zookeeper#zookeeper;3.5.6 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.664995Z","level":"error","event":"\tfound org.apache.zookeeper#zookeeper-jute;3.5.6 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.691985Z","level":"error","event":"\tfound org.apache.yetus#audience-annotations;0.5.0 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.720880Z","level":"error","event":"\tfound org.apache.curator#curator-framework;4.2.0 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.754367Z","level":"error","event":"\tfound org.apache.curator#curator-client;4.2.0 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.777885Z","level":"error","event":"\tfound org.apache.kerby#kerb-simplekdc;1.0.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.807300Z","level":"error","event":"\tfound org.apache.kerby#kerb-client;1.0.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.821010Z","level":"error","event":"\tfound org.apache.kerby#kerby-config;1.0.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.829343Z","level":"error","event":"\tfound org.apache.kerby#kerb-core;1.0.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.835616Z","level":"error","event":"\tfound org.apache.kerby#kerby-pkix;1.0.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.842167Z","level":"error","event":"\tfound org.apache.kerby#kerby-asn1;1.0.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.850165Z","level":"error","event":"\tfound org.apache.kerby#kerby-util;1.0.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.858175Z","level":"error","event":"\tfound org.apache.kerby#kerb-common;1.0.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.866538Z","level":"error","event":"\tfound org.apache.kerby#kerb-crypto;1.0.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.880644Z","level":"error","event":"\tfound org.apache.kerby#kerb-util;1.0.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.890075Z","level":"error","event":"\tfound org.apache.kerby#token-provider;1.0.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.901194Z","level":"error","event":"\tfound org.apache.kerby#kerb-admin;1.0.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.911287Z","level":"error","event":"\tfound org.apache.kerby#kerb-server;1.0.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.921337Z","level":"error","event":"\tfound org.apache.kerby#kerb-identity;1.0.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.933607Z","level":"error","event":"\tfound org.apache.kerby#kerby-xdr;1.0.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.945460Z","level":"error","event":"\tfound com.jcraft#jsch;0.1.55 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.952211Z","level":"error","event":"\tfound org.apache.curator#curator-recipes;4.2.0 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.961910Z","level":"error","event":"\tfound com.fasterxml.jackson.core#jackson-databind;2.12.7 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.971873Z","level":"error","event":"\tfound com.fasterxml.jackson.core#jackson-annotations;2.12.7 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.982114Z","level":"error","event":"\tfound com.fasterxml.jackson.core#jackson-core;2.12.7 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.990356Z","level":"error","event":"\tfound org.codehaus.woodstox#stax2-api;4.2.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:51.999567Z","level":"error","event":"\tfound com.fasterxml.woodstox#woodstox-core;5.3.0 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.013820Z","level":"error","event":"\tfound dnsjava#dnsjava;2.1.7 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.022997Z","level":"error","event":"\tfound jakarta.activation#jakarta.activation-api;1.2.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.029910Z","level":"error","event":"\tfound javax.servlet.jsp#jsp-api;2.1 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.036773Z","level":"error","event":"\tfound com.amazonaws#aws-java-sdk-bundle;1.12.367 in central","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.102770Z","level":"error","event":":: resolution report :: resolve 2113ms :: artifacts dl 50ms","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.102952Z","level":"error","event":"\t:: modules in use:","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.103187Z","level":"error","event":"\tch.qos.reload4j#reload4j;1.2.22 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.103315Z","level":"error","event":"\tcom.amazonaws#aws-java-sdk-bundle;1.12.367 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.103390Z","level":"error","event":"\tcom.fasterxml.jackson.core#jackson-annotations;2.12.7 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.103453Z","level":"error","event":"\tcom.fasterxml.jackson.core#jackson-core;2.12.7 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.103530Z","level":"error","event":"\tcom.fasterxml.jackson.core#jackson-databind;2.12.7 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.103590Z","level":"error","event":"\tcom.fasterxml.woodstox#woodstox-core;5.3.0 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.103644Z","level":"error","event":"\tcom.github.stephenc.jcip#jcip-annotations;1.0-1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.103776Z","level":"error","event":"\tcom.google.code.findbugs#jsr305;3.0.2 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.103851Z","level":"error","event":"\tcom.google.code.gson#gson;2.8.9 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.103917Z","level":"error","event":"\tcom.google.guava#failureaccess;1.0 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.103975Z","level":"error","event":"\tcom.google.guava#guava;27.0-jre from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104032Z","level":"error","event":"\tcom.google.guava#listenablefuture;9999.0-empty-to-avoid-conflict-with-guava from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104086Z","level":"error","event":"\tcom.google.j2objc#j2objc-annotations;1.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104135Z","level":"error","event":"\tcom.google.protobuf#protobuf-java;2.5.0 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104185Z","level":"error","event":"\tcom.google.re2j#re2j;1.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104251Z","level":"error","event":"\tcom.jcraft#jsch;0.1.55 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104306Z","level":"error","event":"\tcom.nimbusds#nimbus-jose-jwt;9.8.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104356Z","level":"error","event":"\tcom.sun.jersey#jersey-core;1.19 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104405Z","level":"error","event":"\tcom.sun.jersey#jersey-json;1.19 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104455Z","level":"error","event":"\tcom.sun.jersey#jersey-server;1.19 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104505Z","level":"error","event":"\tcom.sun.jersey#jersey-servlet;1.19 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104558Z","level":"error","event":"\tcom.sun.xml.bind#jaxb-impl;2.2.3-1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104676Z","level":"error","event":"\tcom.thoughtworks.paranamer#paranamer;2.3 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104775Z","level":"error","event":"\tcommons-beanutils#commons-beanutils;1.9.4 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104845Z","level":"error","event":"\tcommons-cli#commons-cli;1.2 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104897Z","level":"error","event":"\tcommons-codec#commons-codec;1.15 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104944Z","level":"error","event":"\tcommons-collections#commons-collections;3.2.2 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.104994Z","level":"error","event":"\tcommons-io#commons-io;2.8.0 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105045Z","level":"error","event":"\tcommons-logging#commons-logging;1.1.3 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105101Z","level":"error","event":"\tcommons-net#commons-net;3.6 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105155Z","level":"error","event":"\tdnsjava#dnsjava;2.1.7 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105211Z","level":"error","event":"\tjakarta.activation#jakarta.activation-api;1.2.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105281Z","level":"error","event":"\tjavax.servlet#javax.servlet-api;3.1.0 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105339Z","level":"error","event":"\tjavax.servlet.jsp#jsp-api;2.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105396Z","level":"error","event":"\tjavax.ws.rs#jsr311-api;1.1.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105447Z","level":"error","event":"\tjavax.xml.bind#jaxb-api;2.2.11 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105501Z","level":"error","event":"\tnet.minidev#accessors-smart;2.4.7 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105551Z","level":"error","event":"\tnet.minidev#json-smart;2.4.7 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105597Z","level":"error","event":"\torg.apache.avro#avro;1.7.7 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105644Z","level":"error","event":"\torg.apache.commons#commons-compress;1.21 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105690Z","level":"error","event":"\torg.apache.commons#commons-configuration2;2.1.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105757Z","level":"error","event":"\torg.apache.commons#commons-lang3;3.12.0 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105819Z","level":"error","event":"\torg.apache.commons#commons-math3;3.1.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105870Z","level":"error","event":"\torg.apache.commons#commons-text;1.4 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105921Z","level":"error","event":"\torg.apache.curator#curator-client;4.2.0 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.105969Z","level":"error","event":"\torg.apache.curator#curator-framework;4.2.0 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106017Z","level":"error","event":"\torg.apache.curator#curator-recipes;4.2.0 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106068Z","level":"error","event":"\torg.apache.hadoop#hadoop-annotations;3.3.4 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106121Z","level":"error","event":"\torg.apache.hadoop#hadoop-auth;3.3.4 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106173Z","level":"error","event":"\torg.apache.hadoop#hadoop-aws;3.3.4 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106309Z","level":"error","event":"\torg.apache.hadoop#hadoop-common;3.3.4 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106380Z","level":"error","event":"\torg.apache.hadoop.thirdparty#hadoop-shaded-guava;1.1.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106432Z","level":"error","event":"\torg.apache.hadoop.thirdparty#hadoop-shaded-protobuf_3_7;1.1.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106481Z","level":"error","event":"\torg.apache.httpcomponents#httpclient;4.5.13 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106528Z","level":"error","event":"\torg.apache.httpcomponents#httpcore;4.4.13 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106573Z","level":"error","event":"\torg.apache.iceberg#iceberg-spark-runtime-3.5_2.12;1.4.3 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106628Z","level":"error","event":"\torg.apache.kerby#kerb-admin;1.0.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106679Z","level":"error","event":"\torg.apache.kerby#kerb-client;1.0.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106744Z","level":"error","event":"\torg.apache.kerby#kerb-common;1.0.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106794Z","level":"error","event":"\torg.apache.kerby#kerb-core;1.0.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106843Z","level":"error","event":"\torg.apache.kerby#kerb-crypto;1.0.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106893Z","level":"error","event":"\torg.apache.kerby#kerb-identity;1.0.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106941Z","level":"error","event":"\torg.apache.kerby#kerb-server;1.0.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.106991Z","level":"error","event":"\torg.apache.kerby#kerb-simplekdc;1.0.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107039Z","level":"error","event":"\torg.apache.kerby#kerb-util;1.0.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107097Z","level":"error","event":"\torg.apache.kerby#kerby-asn1;1.0.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107159Z","level":"error","event":"\torg.apache.kerby#kerby-config;1.0.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107214Z","level":"error","event":"\torg.apache.kerby#kerby-pkix;1.0.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107272Z","level":"error","event":"\torg.apache.kerby#kerby-util;1.0.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107330Z","level":"error","event":"\torg.apache.kerby#kerby-xdr;1.0.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107380Z","level":"error","event":"\torg.apache.kerby#token-provider;1.0.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107434Z","level":"error","event":"\torg.apache.yetus#audience-annotations;0.5.0 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107486Z","level":"error","event":"\torg.apache.zookeeper#zookeeper;3.5.6 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107537Z","level":"error","event":"\torg.apache.zookeeper#zookeeper-jute;3.5.6 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107589Z","level":"error","event":"\torg.checkerframework#checker-qual;2.5.2 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107647Z","level":"error","event":"\torg.codehaus.jackson#jackson-core-asl;1.9.13 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107702Z","level":"error","event":"\torg.codehaus.jackson#jackson-jaxrs;1.9.13 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107852Z","level":"error","event":"\torg.codehaus.jackson#jackson-mapper-asl;1.9.13 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107915Z","level":"error","event":"\torg.codehaus.jackson#jackson-xc;1.9.13 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.107967Z","level":"error","event":"\torg.codehaus.jettison#jettison;1.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108015Z","level":"error","event":"\torg.codehaus.mojo#animal-sniffer-annotations;1.17 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108074Z","level":"error","event":"\torg.codehaus.woodstox#stax2-api;4.2.1 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108130Z","level":"error","event":"\torg.eclipse.jetty#jetty-http;9.4.43.v20210629 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108185Z","level":"error","event":"\torg.eclipse.jetty#jetty-io;9.4.43.v20210629 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108234Z","level":"error","event":"\torg.eclipse.jetty#jetty-security;9.4.43.v20210629 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108284Z","level":"error","event":"\torg.eclipse.jetty#jetty-server;9.4.43.v20210629 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108332Z","level":"error","event":"\torg.eclipse.jetty#jetty-servlet;9.4.43.v20210629 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108384Z","level":"error","event":"\torg.eclipse.jetty#jetty-util;9.4.43.v20210629 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108435Z","level":"error","event":"\torg.eclipse.jetty#jetty-util-ajax;9.4.43.v20210629 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108485Z","level":"error","event":"\torg.eclipse.jetty#jetty-webapp;9.4.43.v20210629 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108536Z","level":"error","event":"\torg.eclipse.jetty#jetty-xml;9.4.43.v20210629 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108584Z","level":"error","event":"\torg.ow2.asm#asm;5.0.4 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108633Z","level":"error","event":"\torg.slf4j#slf4j-api;1.7.36 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108680Z","level":"error","event":"\torg.slf4j#slf4j-reload4j;1.7.36 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108749Z","level":"error","event":"\torg.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108801Z","level":"error","event":"\torg.xerial.snappy#snappy-java;1.1.8.2 from central in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108850Z","level":"error","event":"\t:: evicted modules:","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.108981Z","level":"error","event":"\tcom.amazonaws#aws-java-sdk-bundle;1.12.262 by [com.amazonaws#aws-java-sdk-bundle;1.12.367] in [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.109060Z","level":"error","event":"\t---------------------------------------------------------------------","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.109114Z","level":"error","event":"\t|                  |            modules            ||   artifacts   |","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.109162Z","level":"error","event":"\t|       conf       | number| search|dwnlded|evicted|| number|dwnlded|","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.109210Z","level":"error","event":"\t---------------------------------------------------------------------","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.109262Z","level":"error","event":"\t|      default     |   97  |   0   |   0   |   1   ||   96  |   0   |","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.109309Z","level":"error","event":"\t---------------------------------------------------------------------","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.116242Z","level":"error","event":":: retrieving :: org.apache.spark#spark-submit-parent-5e9a5076-cdfe-424c-90c9-e7ec3aa73774","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.116403Z","level":"error","event":"\tconfs: [default]","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.127820Z","level":"error","event":"\t0 artifacts copied, 96 already retrieved (0kB/11ms)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.287953Z","level":"error","event":"25/05/31 19:49:52 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.495428Z","level":"error","event":"Setting default log level to \"WARN\".","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:49:52.495821Z","level":"error","event":"To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:01.820238Z","level":"error","event":"\r[Stage 1:>                                                          (0 + 8) / 8]\r\r                                                                                \r25/05/31 19:50:01 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:02.623470Z","level":"error","event":"25/05/31 19:50:02 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.058551Z","level":"error","event":"\r[Stage 4:======================>                                 (82 + 8) / 200]\r\r[Stage 4:============================>                         (105 + 17) / 200]\r\r[Stage 4:==================================================>   (188 + 11) / 200]\r\r                                                                                \r25/05/31 19:50:05 WARN HadoopTableOperations: Error reading version hint file s3a://neo/neo_db/silver_asteroids/metadata/version-hint.text","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.058796Z","level":"error","event":"java.io.FileNotFoundException: No such file or directory: s3a://neo/neo_db/silver_asteroids/metadata/version-hint.text","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.058884Z","level":"error","event":"\tat org.apache.hadoop.fs.s3a.S3AFileSystem.s3GetFileStatus(S3AFileSystem.java:3866)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.058942Z","level":"error","event":"\tat org.apache.hadoop.fs.s3a.S3AFileSystem.innerGetFileStatus(S3AFileSystem.java:3688)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.058999Z","level":"error","event":"\tat org.apache.hadoop.fs.s3a.S3AFileSystem.extractOrFetchSimpleFileStatus(S3AFileSystem.java:5401)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059051Z","level":"error","event":"\tat org.apache.hadoop.fs.s3a.S3AFileSystem.open(S3AFileSystem.java:1465)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059096Z","level":"error","event":"\tat org.apache.hadoop.fs.s3a.S3AFileSystem.open(S3AFileSystem.java:1441)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059141Z","level":"error","event":"\tat org.apache.hadoop.fs.FileSystem.open(FileSystem.java:976)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059184Z","level":"error","event":"\tat org.apache.iceberg.hadoop.HadoopTableOperations.findVersion(HadoopTableOperations.java:318)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059363Z","level":"error","event":"\tat org.apache.iceberg.hadoop.HadoopTableOperations.refresh(HadoopTableOperations.java:104)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059410Z","level":"error","event":"\tat org.apache.iceberg.BaseTransaction.lambda$commitReplaceTransaction$1(BaseTransaction.java:358)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059472Z","level":"error","event":"\tat org.apache.iceberg.util.Tasks$Builder.runTaskWithRetry(Tasks.java:413)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059518Z","level":"error","event":"\tat org.apache.iceberg.util.Tasks$Builder.runSingleThreaded(Tasks.java:219)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059560Z","level":"error","event":"\tat org.apache.iceberg.util.Tasks$Builder.run(Tasks.java:203)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059603Z","level":"error","event":"\tat org.apache.iceberg.util.Tasks$Builder.run(Tasks.java:196)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059644Z","level":"error","event":"\tat org.apache.iceberg.BaseTransaction.commitReplaceTransaction(BaseTransaction.java:355)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059686Z","level":"error","event":"\tat org.apache.iceberg.BaseTransaction.commitTransaction(BaseTransaction.java:304)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059763Z","level":"error","event":"\tat org.apache.iceberg.CommitCallbackTransaction.commitTransaction(CommitCallbackTransaction.java:121)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059809Z","level":"error","event":"\tat org.apache.iceberg.spark.source.StagedSparkTable.commitStagedChanges(StagedSparkTable.java:34)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059858Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.V2CreateTableAsSelectBaseExec.$anonfun$writeToTable$1(WriteToDataSourceV2Exec.scala:580)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059909Z","level":"error","event":"\tat org.apache.spark.util.Utils$.tryWithSafeFinallyAndFailureCallbacks(Utils.scala:1397)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.059953Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.V2CreateTableAsSelectBaseExec.writeToTable(WriteToDataSourceV2Exec.scala:573)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060000Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.V2CreateTableAsSelectBaseExec.writeToTable$(WriteToDataSourceV2Exec.scala:567)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060053Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.AtomicReplaceTableAsSelectExec.writeToTable(WriteToDataSourceV2Exec.scala:183)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060107Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.AtomicReplaceTableAsSelectExec.run(WriteToDataSourceV2Exec.scala:216)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060162Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.V2CommandExec.result$lzycompute(V2CommandExec.scala:43)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060230Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.V2CommandExec.result(V2CommandExec.scala:43)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060283Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.V2CommandExec.executeCollect(V2CommandExec.scala:49)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060338Z","level":"error","event":"\tat org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:107)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060392Z","level":"error","event":"\tat org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:125)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060441Z","level":"error","event":"\tat org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:201)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060507Z","level":"error","event":"\tat org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:108)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060559Z","level":"error","event":"\tat org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060605Z","level":"error","event":"\tat org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:66)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060661Z","level":"error","event":"\tat org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:107)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060707Z","level":"error","event":"\tat org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:98)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060781Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:461)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060826Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(origin.scala:76)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060871Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:461)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.060913Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:32)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061029Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061087Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061133Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061182Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061223Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:437)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061268Z","level":"error","event":"\tat org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:98)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061315Z","level":"error","event":"\tat org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:85)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061362Z","level":"error","event":"\tat org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:83)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061407Z","level":"error","event":"\tat org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:142)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061452Z","level":"error","event":"\tat org.apache.spark.sql.DataFrameWriterV2.runCommand(DataFrameWriterV2.scala:196)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061499Z","level":"error","event":"\tat org.apache.spark.sql.DataFrameWriterV2.internalReplace(DataFrameWriterV2.scala:208)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061553Z","level":"error","event":"\tat org.apache.spark.sql.DataFrameWriterV2.createOrReplace(DataFrameWriterV2.scala:134)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061606Z","level":"error","event":"\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061652Z","level":"error","event":"\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061696Z","level":"error","event":"\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061748Z","level":"error","event":"\tat java.base/java.lang.reflect.Method.invoke(Method.java:569)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061794Z","level":"error","event":"\tat py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061844Z","level":"error","event":"\tat py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061883Z","level":"error","event":"\tat py4j.Gateway.invoke(Gateway.java:282)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061922Z","level":"error","event":"\tat py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.061961Z","level":"error","event":"\tat py4j.commands.CallCommand.execute(CallCommand.java:79)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.062000Z","level":"error","event":"\tat py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.062039Z","level":"error","event":"\tat py4j.ClientServerConnection.run(ClientServerConnection.java:106)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.062078Z","level":"error","event":"\tat java.base/java.lang.Thread.run(Thread.java:840)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.099291Z","level":"error","event":"25/05/31 19:50:05 WARN HadoopTableOperations: Error reading version hint file s3a://neo/neo_db/silver_asteroids/metadata/version-hint.text","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.099605Z","level":"error","event":"java.io.FileNotFoundException: No such file or directory: s3a://neo/neo_db/silver_asteroids/metadata/version-hint.text","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.099699Z","level":"error","event":"\tat org.apache.hadoop.fs.s3a.S3AFileSystem.s3GetFileStatus(S3AFileSystem.java:3866)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.099797Z","level":"error","event":"\tat org.apache.hadoop.fs.s3a.S3AFileSystem.innerGetFileStatus(S3AFileSystem.java:3688)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.099859Z","level":"error","event":"\tat org.apache.hadoop.fs.s3a.S3AFileSystem.extractOrFetchSimpleFileStatus(S3AFileSystem.java:5401)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.099918Z","level":"error","event":"\tat org.apache.hadoop.fs.s3a.S3AFileSystem.open(S3AFileSystem.java:1465)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.099978Z","level":"error","event":"\tat org.apache.hadoop.fs.s3a.S3AFileSystem.open(S3AFileSystem.java:1441)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.100038Z","level":"error","event":"\tat org.apache.hadoop.fs.FileSystem.open(FileSystem.java:976)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.100335Z","level":"error","event":"\tat org.apache.iceberg.hadoop.HadoopTableOperations.findVersion(HadoopTableOperations.java:318)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.100438Z","level":"error","event":"\tat org.apache.iceberg.hadoop.HadoopTableOperations.refresh(HadoopTableOperations.java:104)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.100492Z","level":"error","event":"\tat org.apache.iceberg.hadoop.HadoopTableOperations.current(HadoopTableOperations.java:84)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.100545Z","level":"error","event":"\tat org.apache.iceberg.BaseTransaction.lambda$commitReplaceTransaction$1(BaseTransaction.java:367)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.100597Z","level":"error","event":"\tat org.apache.iceberg.util.Tasks$Builder.runTaskWithRetry(Tasks.java:413)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.100652Z","level":"error","event":"\tat org.apache.iceberg.util.Tasks$Builder.runSingleThreaded(Tasks.java:219)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.100703Z","level":"error","event":"\tat org.apache.iceberg.util.Tasks$Builder.run(Tasks.java:203)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.100786Z","level":"error","event":"\tat org.apache.iceberg.util.Tasks$Builder.run(Tasks.java:196)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.100836Z","level":"error","event":"\tat org.apache.iceberg.BaseTransaction.commitReplaceTransaction(BaseTransaction.java:355)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.100885Z","level":"error","event":"\tat org.apache.iceberg.BaseTransaction.commitTransaction(BaseTransaction.java:304)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.100931Z","level":"error","event":"\tat org.apache.iceberg.CommitCallbackTransaction.commitTransaction(CommitCallbackTransaction.java:121)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.100978Z","level":"error","event":"\tat org.apache.iceberg.spark.source.StagedSparkTable.commitStagedChanges(StagedSparkTable.java:34)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101024Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.V2CreateTableAsSelectBaseExec.$anonfun$writeToTable$1(WriteToDataSourceV2Exec.scala:580)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101071Z","level":"error","event":"\tat org.apache.spark.util.Utils$.tryWithSafeFinallyAndFailureCallbacks(Utils.scala:1397)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101228Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.V2CreateTableAsSelectBaseExec.writeToTable(WriteToDataSourceV2Exec.scala:573)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101285Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.V2CreateTableAsSelectBaseExec.writeToTable$(WriteToDataSourceV2Exec.scala:567)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101331Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.AtomicReplaceTableAsSelectExec.writeToTable(WriteToDataSourceV2Exec.scala:183)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101377Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.AtomicReplaceTableAsSelectExec.run(WriteToDataSourceV2Exec.scala:216)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101424Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.V2CommandExec.result$lzycompute(V2CommandExec.scala:43)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101469Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.V2CommandExec.result(V2CommandExec.scala:43)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101514Z","level":"error","event":"\tat org.apache.spark.sql.execution.datasources.v2.V2CommandExec.executeCollect(V2CommandExec.scala:49)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101582Z","level":"error","event":"\tat org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:107)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101633Z","level":"error","event":"\tat org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:125)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101681Z","level":"error","event":"\tat org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:201)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101750Z","level":"error","event":"\tat org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:108)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101804Z","level":"error","event":"\tat org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101852Z","level":"error","event":"\tat org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:66)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101896Z","level":"error","event":"\tat org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:107)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101944Z","level":"error","event":"\tat org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:98)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.101987Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:461)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102035Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(origin.scala:76)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102074Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:461)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102117Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:32)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102159Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102198Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102237Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102277Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102316Z","level":"error","event":"\tat org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:437)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102357Z","level":"error","event":"\tat org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:98)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102399Z","level":"error","event":"\tat org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:85)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102440Z","level":"error","event":"\tat org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:83)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102489Z","level":"error","event":"\tat org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:142)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102529Z","level":"error","event":"\tat org.apache.spark.sql.DataFrameWriterV2.runCommand(DataFrameWriterV2.scala:196)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102573Z","level":"error","event":"\tat org.apache.spark.sql.DataFrameWriterV2.internalReplace(DataFrameWriterV2.scala:208)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102613Z","level":"error","event":"\tat org.apache.spark.sql.DataFrameWriterV2.createOrReplace(DataFrameWriterV2.scala:134)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102653Z","level":"error","event":"\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102694Z","level":"error","event":"\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102754Z","level":"error","event":"\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102803Z","level":"error","event":"\tat java.base/java.lang.reflect.Method.invoke(Method.java:569)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102847Z","level":"error","event":"\tat py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102893Z","level":"error","event":"\tat py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102938Z","level":"error","event":"\tat py4j.Gateway.invoke(Gateway.java:282)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.102981Z","level":"error","event":"\tat py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.103025Z","level":"error","event":"\tat py4j.commands.CallCommand.execute(CallCommand.java:79)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.103066Z","level":"error","event":"\tat py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.103106Z","level":"error","event":"\tat py4j.ClientServerConnection.run(ClientServerConnection.java:106)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:05.103218Z","level":"error","event":"\tat java.base/java.lang.Thread.run(Thread.java:840)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-06-01T00:50:08.353395","level":"info","event":"Pushing xcom","ti":"RuntimeTaskInstance(id=UUID('019728f7-3f5e-700b-b31f-ee585945a1a9'), task_id='Convert_raw_JSON_to_DataFrame', dag_id='NeoAPIPipeline', run_id='manual__2025-06-01T00:49:41.705298+00:00', try_number=1, map_index=-1, hostname='newlife', context_carrier=None, task=<Task(PapermillOperator): Convert_raw_JSON_to_DataFrame>, bundle_instance=LocalDagBundle(name=dags-folder), max_tries=0, start_date=datetime.datetime(2025, 6, 1, 0, 49, 46, 564145, tzinfo=TzInfo(UTC)), end_date=None, state=<TaskInstanceState.RUNNING: 'running'>, is_mapped=False, rendered_map_index=None)","logger":"task"}

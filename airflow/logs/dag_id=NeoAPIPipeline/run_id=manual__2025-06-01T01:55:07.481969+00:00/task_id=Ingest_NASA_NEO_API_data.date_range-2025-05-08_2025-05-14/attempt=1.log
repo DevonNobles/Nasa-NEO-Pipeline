@@ -1,0 +1,20 @@
+{"timestamp":"2025-06-01T01:55:08.537409","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-06-01T01:55:08.538828","level":"info","event":"Filling up the DagBag from /home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline/airflow/dags/daily_nasa_neo_etl_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-06-01T01:55:09.551449","level":"info","event":"Creating MinIO client for endpoint: localhost:9000","logger":"src.minio_client"}
+{"timestamp":"2025-06-01T01:55:09.551800","level":"info","event":"Validating MinIO connection...","logger":"src.minio_client"}
+{"timestamp":"2025-06-01T01:55:09.555030","level":"info","event":"MinIO connection validated successfully","logger":"src.minio_client"}
+{"timestamp":"2025-06-01T01:55:09.567573Z","level":"info","event":"[('2025-05-01', '2025-05-07'), ('2025-05-08', '2025-05-14'), ('2025-05-15', '2025-05-21'), ('2025-05-22', '2025-05-28'), ('2025-05-29', '2025-05-31')]","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T01:55:09.568441Z","level":"info","event":"2025-05-29 2025-05-31","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T01:55:09.569155Z","level":"info","event":"<Task(PapermillOperator): Ingest_NASA_NEO_API_data.date_range-2025-05-29_2025-05-31>","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T01:55:09.569242Z","level":"info","event":"2025-05-22 2025-05-28","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T01:55:09.569421Z","level":"info","event":"<Task(PapermillOperator): Ingest_NASA_NEO_API_data.date_range-2025-05-22_2025-05-28>","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T01:55:09.569466Z","level":"info","event":"2025-05-15 2025-05-21","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T01:55:09.569630Z","level":"info","event":"<Task(PapermillOperator): Ingest_NASA_NEO_API_data.date_range-2025-05-15_2025-05-21>","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T01:55:09.569681Z","level":"info","event":"2025-05-08 2025-05-14","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T01:55:09.569848Z","level":"info","event":"<Task(PapermillOperator): Ingest_NASA_NEO_API_data.date_range-2025-05-08_2025-05-14>","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T01:55:09.569911Z","level":"info","event":"2025-05-01 2025-05-07","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T01:55:09.570021Z","level":"info","event":"<Task(PapermillOperator): Ingest_NASA_NEO_API_data.date_range-2025-05-01_2025-05-07>","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T01:55:09.574280","level":"info","event":"Input Notebook:  /home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline/notebooks/NeoApiClient.ipynb","logger":"papermill"}
+{"timestamp":"2025-06-01T01:55:09.574357","level":"info","event":"Output Notebook: /home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline/notebooks/tmp/bronze/2025-05-31 20:55:09/2025-05-08_2025-05-14-OUT_NeoApiClient.ipynb","logger":"papermill"}
+{"timestamp":"2025-06-01T01:55:11.032018","level":"info","event":"Executing notebook with kernel: nasa_spark_kernel","logger":"papermill"}
+{"timestamp":"2025-06-01T01:55:12.791605","level":"info","event":"Pushing xcom","ti":"RuntimeTaskInstance(id=UUID('01972933-268c-77e4-8737-89b85723753c'), task_id='Ingest_NASA_NEO_API_data.date_range-2025-05-08_2025-05-14', dag_id='NeoAPIPipeline', run_id='manual__2025-06-01T01:55:07.481969+00:00', try_number=1, map_index=-1, hostname='newlife', context_carrier=None, task=<Task(PapermillOperator): Ingest_NASA_NEO_API_data.date_range-2025-05-08_2025-05-14>, bundle_instance=LocalDagBundle(name=dags-folder), max_tries=0, start_date=datetime.datetime(2025, 6, 1, 1, 55, 8, 278416, tzinfo=TzInfo(UTC)), end_date=None, state=<TaskInstanceState.RUNNING: 'running'>, is_mapped=False, rendered_map_index=None)","logger":"task"}
