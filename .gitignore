@@ -1,3 +1,8 @@
 .venv/
 .idea/
-nasa.pat
+notebooks/.ipynb_checkpoints
+minio/
+src/__pycache__/
+notebooks/__pycache__/
+airflow.cfg
+airflow.db

@@ -1,4 +1,0 @@
-{"timestamp":"2025-06-01T15:28:17.856584","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
-{"timestamp":"2025-06-01T15:28:17.858575","level":"info","event":"Filling up the DagBag from /home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline/airflow/dags/daily_nasa_neo_etl_pipeline2.py","logger":"airflow.models.dagbag.DagBag"}
-{"timestamp":"2025-06-01T15:28:18.740528","level":"info","event":"Successfully cleaned up pickle file: /home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline/airflow_temp/missing_dates.pkl","logger":"root"}
-{"timestamp":"2025-06-01T15:28:18.740642","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator"}

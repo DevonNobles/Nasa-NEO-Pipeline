@@ -1,7 +1,0 @@
-{"timestamp":"2025-06-01T00:46:01.560102","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
-{"timestamp":"2025-06-01T00:46:01.560724","level":"info","event":"Filling up the DagBag from /home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline/airflow/dags/daily_nasa_neo_etl_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
-{"timestamp":"2025-06-01T00:46:02.430200","level":"info","event":"Creating MinIO client for endpoint: localhost:9000","logger":"src.minio_client"}
-{"timestamp":"2025-06-01T00:46:02.430534","level":"info","event":"Validating MinIO connection...","logger":"src.minio_client"}
-{"timestamp":"2025-06-01T00:46:02.443086","level":"info","event":"MinIO connection validated successfully","logger":"src.minio_client"}
-{"timestamp":"2025-06-01T00:46:02.466032","level":"error","event":"Task not found in DAG during start up","dag_id":"NeoAPIPipeline","task_id":"Ingest_NASA_NEO_API_data.date_range-2025-01-15_2025-01-21","bundle":"BundleInfo(name='dags-folder', version=None)","path":"daily_nasa_neo_etl_pipeline.py","logger":"task"}
-{"timestamp":"2025-06-01T00:46:02.479320Z","level":"warning","event":"Process exited abnormally","exit_code":1,"logger":"task"}
