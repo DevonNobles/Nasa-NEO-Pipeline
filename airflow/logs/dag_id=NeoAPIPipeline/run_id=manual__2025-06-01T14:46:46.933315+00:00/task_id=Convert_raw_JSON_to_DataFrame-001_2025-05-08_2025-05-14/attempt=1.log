@@ -1,0 +1,10 @@
+{"timestamp":"2025-06-01T14:46:56.388489","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-06-01T14:46:56.389326","level":"info","event":"Filling up the DagBag from /home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline/airflow/dags/daily_nasa_neo_etl_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-06-01T14:46:58.174865","level":"info","event":"Creating MinIO client for endpoint: localhost:9000","logger":"src.minio_client"}
+{"timestamp":"2025-06-01T14:46:58.175093","level":"info","event":"Validating MinIO connection...","logger":"src.minio_client"}
+{"timestamp":"2025-06-01T14:46:58.177598","level":"info","event":"MinIO connection validated successfully","logger":"src.minio_client"}
+{"timestamp":"2025-06-01T14:46:58.193032","level":"info","event":"Successfully loaded missing_date_table with 0 entries","logger":"root"}
+{"timestamp":"2025-06-01T14:46:58.193125","level":"info","event":"missing_date_table contains 0 date ranges","logger":"root"}
+{"timestamp":"2025-06-01T14:46:58.193798","level":"info","event":"No missing dates found - creating empty pipeline","logger":"root"}
+{"timestamp":"2025-06-01T14:46:58.194390","level":"error","event":"Task not found in DAG during start up","dag_id":"NeoAPIPipeline","task_id":"Convert_raw_JSON_to_DataFrame-001_2025-05-08_2025-05-14","bundle":"BundleInfo(name='dags-folder', version=None)","path":"daily_nasa_neo_etl_pipeline.py","logger":"task"}
+{"timestamp":"2025-06-01T14:46:58.208747Z","level":"warning","event":"Process exited abnormally","exit_code":1,"logger":"task"}

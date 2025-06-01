@@ -1,0 +1,10 @@
+{"timestamp":"2025-06-01T14:46:47.367621","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-06-01T14:46:47.368630","level":"info","event":"Filling up the DagBag from /home/fastnnefarious/Projects/PycharmProjects/nasa_neo_pipeline/airflow/dags/daily_nasa_neo_etl_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-06-01T14:46:49.078591","level":"info","event":"Creating MinIO client for endpoint: localhost:9000","logger":"src.minio_client"}
+{"timestamp":"2025-06-01T14:46:49.079256","level":"info","event":"Validating MinIO connection...","logger":"src.minio_client"}
+{"timestamp":"2025-06-01T14:46:49.085904","level":"info","event":"MinIO connection validated successfully","logger":"src.minio_client"}
+{"timestamp":"2025-06-01T14:46:49.116428","level":"info","event":"Successfully loaded missing_date_table with 5 entries","logger":"root"}
+{"timestamp":"2025-06-01T14:46:49.116592","level":"info","event":"missing_date_table contains 5 date ranges","logger":"root"}
+{"timestamp":"2025-06-01T14:46:49.116691","level":"info","event":"Date ranges: [('2025-05-01', '2025-05-07'), ('2025-05-08', '2025-05-14'), ('2025-05-15', '2025-05-21'), ('2025-05-22', '2025-05-28'), ('2025-05-29', '2025-06-01')]","logger":"root"}
+{"timestamp":"2025-06-01T14:46:49.118247","level":"info","event":"Processing 5 missing date ranges","logger":"root"}
+{"timestamp":"2025-06-01T14:46:49.128860","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator"}

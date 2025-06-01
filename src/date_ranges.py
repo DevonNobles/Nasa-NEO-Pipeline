@@ -74,20 +74,26 @@ def date_table_df(first_date: date, last_date: date) -> pd.DataFrame:
     df = df.sort_values('all_dates').reset_index(drop=True)
     return df
 
+def calculate_missing_dates(execution_date: date):
+    # DataFrame of all dates between today and the earliest_date
+    full_date_range_df = date_table_df(earliest_date, execution_date)
 
-# DataFrame of all dates between today and the earliest_date
-full_date_range_df = date_table_df(earliest_date, datetime.today().date())
+    # List of all date ranges already stored in 'neo/bronze/'
+    obj_datetimes_list = get_current_bronze_file_datetimes(minio_client)
 
-# List of all date ranges already stored in 'neo/bronze/'
-obj_datetimes_list = get_current_bronze_file_datetimes(minio_client)
+    # Create Dataframe of dates stored in 'neo/bronze/'
+    existing_date_range_df = pd.DataFrame({'all_dates': []})
+    for first, last in obj_datetimes_list:
+        partial_date_range_df = date_table_df(first, last)
+        if len(existing_date_range_df['all_dates']) == 0:
+            existing_date_range_df = partial_date_range_df
+        else:
+            existing_date_range_df = pd.concat([existing_date_range_df, partial_date_range_df])
 
-# Create Dataframe of dates stored in 'neo/bronze/'
-existing_date_range_df = pd.DataFrame({'all_dates': []})
-for first, last in obj_datetimes_list:
-    partial_date_range_df = date_table_df(first, last)
-    if len(existing_date_range_df['all_dates']) == 0:
-        existing_date_range_df = partial_date_range_df
-    else:
-        existing_date_range_df = pd.concat([existing_date_range_df, partial_date_range_df])
+    missing_dates = create_missing_date_list(full_date_range_df, existing_date_range_df)
+    return missing_dates
 
-missing_date_table = create_missing_date_list(full_date_range_df, existing_date_range_df)
+missing_date_table = calculate_missing_dates(datetime.today().date())
+
+if __name__ == '__main__':
+    print(missing_date_table)
