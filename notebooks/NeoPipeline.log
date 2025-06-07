@@ -1,0 +1,20 @@
+INFO:src.minio_client:Creating MinIO client for endpoint: localhost:9000
+DEBUG:src.minio_client:MinIO client instance created successfully
+INFO:src.minio_client:Validating MinIO connection...
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:9000
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/'): Retry(total=4, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7a583b6a86b0>: Failed to establish a new connection: [Errno 111] Connection refused')': /
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (2): localhost:9000
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/'): Retry(total=3, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7a583ab84a70>: Failed to establish a new connection: [Errno 111] Connection refused')': /
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (3): localhost:9000
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/'): Retry(total=2, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7a5839e15730>: Failed to establish a new connection: [Errno 111] Connection refused')': /
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (4): localhost:9000
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/'): Retry(total=1, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7a58396bdb50>: Failed to establish a new connection: [Errno 111] Connection refused')': /
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (5): localhost:9000
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/'): Retry(total=0, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7a58396bdcd0>: Failed to establish a new connection: [Errno 111] Connection refused')': /
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (6): localhost:9000
+ERROR:src.minio_client:Failed to connect to MinIO at localhost:9000: HTTPConnectionPool(host='localhost', port=9000): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7a58396bde50>: Failed to establish a new connection: [Errno 111] Connection refused'))
