@@ -22,3 +22,7 @@ class MinioConnectionError(Exception):
 class MinioAuthenticationError(Exception):
     """Raised when MinIO authentication fails."""
     pass
+
+class TableAlreadyExistsException(Exception):
+    """Raised when table already exists in catalog"""
+    pass

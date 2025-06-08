@@ -1,16 +1,12 @@
-import minio
-import pandas as pd
-from src.minio_client import create_minio_client
 from datetime import *
 from typing import Optional
+import minio
+import pandas as pd
 
 # Set earliest date for data retrieval
 # The bronze task will request all data between this date and today's date
 # Only 7 days can be requested at one time. Only 10,000 requests per day
 earliest_date=date(2025, 5, 1)
-
-# Connect to MinIO blob storage
-minio_client = create_minio_client()
 
 
 def create_missing_date_list(df: pd.DataFrame, filter_by: Optional[pd.DataFrame]=None) -> list[tuple[str, str]]:
@@ -74,12 +70,12 @@ def date_table_df(first_date: date, last_date: date) -> pd.DataFrame:
     df = df.sort_values('all_dates').reset_index(drop=True)
     return df
 
-def calculate_missing_dates(execution_date: date):
+def calculate_missing_dates(execution_date: date, storage_client) -> list[tuple[str, str]]:
     # DataFrame of all dates between today and the earliest_date
     full_date_range_df = date_table_df(earliest_date, execution_date)
 
     # List of all date ranges already stored in 'neo/bronze/'
-    obj_datetimes_list = get_current_bronze_file_datetimes(minio_client)
+    obj_datetimes_list: list[tuple[date, date]] = get_current_bronze_file_datetimes(storage_client)
 
     # Create Dataframe of dates stored in 'neo/bronze/'
     existing_date_range_df = pd.DataFrame({'all_dates': []})
@@ -92,8 +88,3 @@ def calculate_missing_dates(execution_date: date):
 
     missing_dates = create_missing_date_list(full_date_range_df, existing_date_range_df)
     return missing_dates
-
-missing_date_table = calculate_missing_dates(datetime.today().date())
-
-if __name__ == '__main__':
-    print(missing_date_table)

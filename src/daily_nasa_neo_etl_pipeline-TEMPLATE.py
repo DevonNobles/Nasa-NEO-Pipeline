@@ -1,36 +1,23 @@
 from datetime import *
-from airflow.providers.standard.operators.python import PythonOperator
-from airflow import DAG
-from src.config import NASA_NEO_API_KEY, NASA_NEO_URI
 from pathlib import Path
 import pickle
-import papermill
 import logging
 import os
+from airflow.providers.standard.operators.python import PythonOperator
+from airflow import DAG
+from src.config import NASA_NEO_API_KEY, NASA_NEO_URI, BUCKET_NAME, Mode
+from src.minio_client import create_minio_client
+from src.date_ranges import calculate_missing_dates
+from src.neo_api_pipeline import NeoPipelineController
 
 # Add parent directory to Python path
 project_dir = Path(__file__).resolve().parent.parent.parent
-
-# Create template directories paths
-base_bronze_dir = Path(f"{project_dir}/notebooks/tmp/bronze/")
-base_silver_dir = Path(f"{project_dir}/notebooks/tmp/silver/")
-base_gold_dir = Path(f"{project_dir}/notebooks/tmp/gold/")
-
-# Create template directories
-base_bronze_dir.mkdir(parents=True, exist_ok=True)
-base_silver_dir.mkdir(parents=True, exist_ok=True)
-base_gold_dir.mkdir(parents=True, exist_ok=True)
 
 # Define the pickle file path in a location Airflow can access
 PICKLE_FILE_PATH = f"{project_dir}/airflow_temp/missing_dates.pkl"
 
 
-def create_timestamped_directory(directory_path):
-    """Create a timestamped directory if it doesn't exist"""
-    Path(directory_path).mkdir(parents=True, exist_ok=True)
-
-
-def generate_missing_dates_pickle(**context):
+def generate_missing_dates_pickle():
     """
     This function runs date_ranges.py to generate the missing_date_table
     and saves it as a pickle file for other tasks to use.
@@ -39,9 +26,8 @@ def generate_missing_dates_pickle(**context):
         # Create the temp directory if it doesn't exist
         os.makedirs(os.path.dirname(PICKLE_FILE_PATH), exist_ok=True)
 
-        # Import and run the date_ranges logic
-        # This is where your date_ranges.py logic would execute
-        from src.date_ranges import missing_date_table
+        minio_client = create_minio_client()
+        missing_date_table = calculate_missing_dates(datetime.today().date(), minio_client)
 
         # Save the missing_date_table to a pickle file
         with open(PICKLE_FILE_PATH, 'wb') as f:
@@ -61,7 +47,7 @@ def generate_missing_dates_pickle(**context):
         return 0
 
 
-def load_missing_dates_and_process_bronze(**context):
+def load_missing_dates_and_process_bronze():
     """
     Load the pickled missing_date_table and process all bronze tasks.
     """
@@ -76,42 +62,38 @@ def load_missing_dates_and_process_bronze(**context):
             logging.info("No missing dates to process in bronze layer")
             return "no_data_processed"
 
-        # Create timestamped bronze directory
-        bronze_dir = f"{project_dir}/notebooks/tmp/bronze/{context['ts']}"
-        create_timestamped_directory(bronze_dir)
-
         # Process each date range
         processed_ranges = []
         for i, (date_start, date_end) in enumerate(missing_date_table):
             logging.info(
                 f"Processing bronze for date range {i + 1}/{len(missing_date_table)}: {date_start} to {date_end}")
 
-            output_notebook = f"{bronze_dir}/{date_start}_{date_end}-NeoApiClient.ipynb"
+            # Connect to Minio blob storage
+            minio_client = create_minio_client()
 
-            papermill.execute_notebook(
-                input_path=f"{project_dir}/notebooks/NeoApiClient.ipynb",
-                output_path= output_notebook,
-                parameters={
-                'api_key_param': NASA_NEO_API_KEY,
-                'api_uri_param': NASA_NEO_URI,
-                'start_date_param': date_start,
-                'end_date_param': date_end,
-                'bucket_name_param': 'neo',
-                'mode': 'bronze'
-                }
-            )
+            # Initialize NeoApiClient
+            neo_client = NeoPipelineController(mode=Mode.BRONZE,
+                                               storage=minio_client,
+                                               bucket_name=BUCKET_NAME,
+                                               api_key=NASA_NEO_API_KEY,
+                                               api_uri=NASA_NEO_URI,
+                                               start_date=date_start,
+                                               end_date=date_end)
+
+            # Execute ETL pipeline task based on mode
+            neo_client.extract().transform().load()
 
             processed_ranges.append(f"{date_start}_{date_end}")
 
         logging.info(f"Completed bronze processing for {len(processed_ranges)} date ranges")
-        return f"processed_{len(processed_ranges)}_ranges"
+        return None
 
     except Exception as e:
         logging.error(f"Error in bronze processing: {e}")
         raise
 
 
-def load_missing_dates_and_process_silver(**context):
+def load_missing_dates_and_process_silver():
     """
     Load the pickled missing_date_table and process all silver tasks.
     """
@@ -126,56 +108,50 @@ def load_missing_dates_and_process_silver(**context):
             logging.info("No missing dates to process in silver layer")
             return "no_data_processed"
 
-        # Create timestamped silver directory
-        silver_dir = f"{project_dir}/notebooks/tmp/silver/{context['ts']}"
-        create_timestamped_directory(silver_dir)
-
         # Process each date range
         processed_ranges = []
         for i, (date_start, date_end) in enumerate(missing_date_table):
             logging.info(
                 f"Processing silver for date range {i + 1}/{len(missing_date_table)}: {date_start} to {date_end}")
 
-            output_notebook = f"{silver_dir}/{date_start}_{date_end}-NeoApiClient.ipynb"
+            # Connect to Minio blob storage
+            minio_client = create_minio_client()
 
-            papermill.execute_notebook(
-                input_path=f"{project_dir}/notebooks/NeoApiClient.ipynb",
-                output_path=output_notebook,
-                parameters={
-                    'bucket_name_param': 'neo',
-                    'mode': 'silver'
-                }
-            )
+            # Initialize NeoApiClient
+            neo_client = NeoPipelineController(mode=Mode.SILVER,
+                                               storage=minio_client,
+                                               bucket_name=BUCKET_NAME,
+                                               start_date=date_start,
+                                               end_date=date_end)
+
+            # Execute ETL pipeline task based on mode
+            neo_client.extract().transform().load()
 
             processed_ranges.append(f"{date_start}_{date_end}")
 
         logging.info(f"Completed silver processing for {len(processed_ranges)} date ranges")
-        return f"processed_{len(processed_ranges)}_ranges"
+        return None
 
     except Exception as e:
         logging.error(f"Error in silver processing: {e}")
         raise
 
 
-def process_gold_layer(**context):
+def process_gold_layer():
     """
     Process the gold layer to create the final analytical dataset.
     """
     try:
-        # Create timestamped gold directory
-        gold_dir = f"{project_dir}/notebooks/tmp/gold/{context['ts']}"
-        create_timestamped_directory(gold_dir)
+        # Connect to Minio blob storage
+        minio_client = create_minio_client()
 
-        output_notebook = f"{gold_dir}/NeoApiClient.ipynb"
+        # Initialize NeoApiClient
+        neo_client = NeoPipelineController(mode=Mode.GOLD,
+                                           storage=minio_client,
+                                           bucket_name=BUCKET_NAME)
 
-        papermill.execute_notebook(
-            input_path=f"{project_dir}/notebooks/NeoApiClient.ipynb",
-            output_path=output_notebook,
-            parameters={
-                'bucket_name_param': 'neo',
-                'mode': 'gold'
-            }
-        )
+        # Execute ETL pipeline task based on mode
+        neo_client.extract().transform().load()
 
         logging.info("Completed gold layer processing")
         return "gold_processed"
@@ -185,7 +161,7 @@ def process_gold_layer(**context):
         raise
 
 
-def cleanup_pickle_file(**context):
+def cleanup_pickle_file():
     """
     Clean up the temporary pickle file after processing is complete.
 
@@ -223,7 +199,6 @@ with DAG(
     """
 ) as dag:
     # Task 1: Generate the missing dates pickle file
-    # This replaces the import at parse-time with runtime execution
     generate_dates_task = PythonOperator(
         task_id='generate_missing_dates_pickle',
         python_callable=generate_missing_dates_pickle,
@@ -234,7 +209,6 @@ with DAG(
     )
 
     # Task 2: Process all bronze tasks in sequence
-    # This replaces the dynamic bronze task creation with a single consolidated task
     bronze_processing_task = PythonOperator(
         task_id='process_all_bronze_data',
         python_callable=load_missing_dates_and_process_bronze,
@@ -245,7 +219,6 @@ with DAG(
     )
 
     # Task 3: Process all silver tasks in sequence
-    # This replaces the dynamic silver task creation with a single consolidated task
     silver_processing_task = PythonOperator(
         task_id='process_all_silver_data',
         python_callable=load_missing_dates_and_process_silver,
@@ -256,7 +229,6 @@ with DAG(
     )
 
     # Task 4: Process gold layer
-    # This remains largely the same but now uses a PythonOperator for consistency
     gold_processing_task = PythonOperator(
         task_id='process_gold_data',
         python_callable=process_gold_layer,
@@ -266,7 +238,6 @@ with DAG(
     )
 
     # Task 5: Cleanup the pickle file
-    # This ensures we don't leave temporary files lying around
     cleanup_task = PythonOperator(
         task_id='cleanup_pickle_file',
         python_callable=cleanup_pickle_file,
@@ -278,5 +249,4 @@ with DAG(
     )
 
     # Define the task dependencies
-    # This creates a linear pipeline that's completely predictable at parse-time
     generate_dates_task >> bronze_processing_task >> silver_processing_task >> gold_processing_task >> cleanup_task

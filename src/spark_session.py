@@ -4,7 +4,6 @@ from pyspark.sql import SparkSession
 from src.config import *
 from src.custom_exceptions import *
 
-logging.basicConfig(filename='NeoPipeline.log', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def create_spark_session(bucket_name: str) -> SparkSession:
