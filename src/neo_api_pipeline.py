@@ -3,9 +3,9 @@ import json
 from io import BytesIO
 from typing import Self
 import pyspark
-from transformations import *
-from queue_manager import queue
-from spark_session import *
+from src.transformations import *
+from src.queue_manager import queue
+from src.spark_session import *
 
 logger = logging.getLogger(__name__)
 
@@ -265,7 +265,7 @@ class NeoPipelineController:
                 self._update_queue('in', obj_name)
             raise DataExtractionError(f"Failed to extract from bronze storage: {e}")
         finally:
-            # Always clean up HTTP connection
+            # Always clean up connection
             if response:
                 response.close()
                 response.release_conn()

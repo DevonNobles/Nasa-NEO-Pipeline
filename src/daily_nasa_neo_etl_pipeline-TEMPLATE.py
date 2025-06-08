@@ -3,12 +3,20 @@ from pathlib import Path
 import pickle
 import logging
 import os
+import sys
+
+project_dir = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(project_dir))
+
 from airflow.providers.standard.operators.python import PythonOperator
 from airflow import DAG
 from src.config import NASA_NEO_API_KEY, NASA_NEO_URI, BUCKET_NAME, Mode
 from src.minio_client import create_minio_client
 from src.date_ranges import calculate_missing_dates
 from src.neo_api_pipeline import NeoPipelineController
+
+# Connect to Minio blob storage
+minio_client = create_minio_client()
 
 # Add parent directory to Python path
 project_dir = Path(__file__).resolve().parent.parent.parent
@@ -26,7 +34,6 @@ def generate_missing_dates_pickle():
         # Create the temp directory if it doesn't exist
         os.makedirs(os.path.dirname(PICKLE_FILE_PATH), exist_ok=True)
 
-        minio_client = create_minio_client()
         missing_date_table = calculate_missing_dates(datetime.today().date(), minio_client)
 
         # Save the missing_date_table to a pickle file
@@ -67,9 +74,6 @@ def load_missing_dates_and_process_bronze():
         for i, (date_start, date_end) in enumerate(missing_date_table):
             logging.info(
                 f"Processing bronze for date range {i + 1}/{len(missing_date_table)}: {date_start} to {date_end}")
-
-            # Connect to Minio blob storage
-            minio_client = create_minio_client()
 
             # Initialize NeoApiClient
             neo_client = NeoPipelineController(mode=Mode.BRONZE,
@@ -114,9 +118,6 @@ def load_missing_dates_and_process_silver():
             logging.info(
                 f"Processing silver for date range {i + 1}/{len(missing_date_table)}: {date_start} to {date_end}")
 
-            # Connect to Minio blob storage
-            minio_client = create_minio_client()
-
             # Initialize NeoApiClient
             neo_client = NeoPipelineController(mode=Mode.SILVER,
                                                storage=minio_client,
@@ -142,9 +143,6 @@ def process_gold_layer():
     Process the gold layer to create the final analytical dataset.
     """
     try:
-        # Connect to Minio blob storage
-        minio_client = create_minio_client()
-
         # Initialize NeoApiClient
         neo_client = NeoPipelineController(mode=Mode.GOLD,
                                            storage=minio_client,
@@ -180,7 +178,7 @@ def cleanup_pickle_file():
 
 # NASA NEO API Pipeline DAG
 with DAG(
-        dag_id="NeoAPIPipeline2",
+        dag_id="NeoAPIPipeline",
         description="NASA NEO ETL Pipeline with runtime dynamic data loading",
         start_date=datetime(2025, 1, 1),
         schedule=None,  # "@daily",

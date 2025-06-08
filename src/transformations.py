@@ -1,5 +1,5 @@
 import logging
-from schemas import *
+from src.schemas import *
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql.functions import explode, col, expr, to_date
 from pyspark.sql.types import DoubleType

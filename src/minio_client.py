@@ -2,8 +2,8 @@ import logging
 from typing import  Optional
 from minio import Minio
 from minio.error import S3Error
-from config import MINIO_ENDPOINT, MINIO_ROOT_USER, MINIO_ROOT_PASSWORD
-from custom_exceptions import MinioConnectionError, MinioAuthenticationError
+from src.config import MINIO_ENDPOINT, MINIO_ROOT_USER, MINIO_ROOT_PASSWORD
+from src.custom_exceptions import MinioConnectionError, MinioAuthenticationError
 
 
 logger = logging.getLogger(__name__)

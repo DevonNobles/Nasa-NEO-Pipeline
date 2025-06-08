@@ -178,17 +178,6 @@ else
     exit 1
 fi
 
-# Install Papermill Airflow provider
-echo ""
-echo "Installing Papermill Airflow provider..."
-if uv pip install apache-airflow-providers-papermill ; then
-    echo "✓ Papermill Airflow provider installation completed"
-else
-    echo "✗ Papermill Airflow provider installation failed"
-    exit 1
-fi
-
-
 # Install MinIO python module
 if pip list | grep minio > /dev/null;then
     echo "minio in pip list"
@@ -215,7 +204,7 @@ fi
 
 # Install pyiceberg
 pip install --upgrade pip
-if [ ! $(pyiceberg --help &> /dev/null ; echo $?) = "0" ];then
+if [ ! "$(pyiceberg --help &> /dev/null ; echo $?)" = "0" ];then
   echo "Installing pyiceberg with pip"
   pip install pyiceberg["s3fs"]
 else
@@ -253,3 +242,115 @@ else
     pip install hvplot
     echo "hvplot installed with pip"
 fi
+
+
+# Create Airflow Start script
+cat > "$PWD/start_airflow.sh" << 'OUTER_EOF'
+#!/bin/bash
+
+# Set up Airflow environment
+export AIRFLOW_HOME
+AIRFLOW_HOME="$(pwd)/airflow"
+echo ""
+echo "Setting AIRFLOW_HOME to: $AIRFLOW_HOME"
+
+export AIRFLOW__CORE__LOAD_EXAMPLES
+AIRFLOW__CORE__LOAD_EXAMPLES=false
+
+# Initialize Airflow database
+echo ""
+echo "Installing Airflow database..."
+if airflow standalone & then
+    mkdir -p "$AIRFLOW_HOME" && echo "AIRFLOW_PID=$!" > "$AIRFLOW_HOME/service_pid.txt"
+    echo "✓ Airflow standalone installed"
+else
+    echo "✗ Airflow standalone failed to install"
+    exit 1
+fi
+
+# Creating standard Airflow directories
+echo ""
+echo "Checking for standard airflow directories (dags, logs, plugins, config)"
+for dir in dags logs plugins config; do
+    if [ ! -d "$AIRFLOW_HOME/$dir" ]; then
+        mkdir -p "$AIRFLOW_HOME/$dir"
+        echo "✓ $AIRFLOW_HOME/$dir directory created"
+    else
+        echo "✓ $AIRFLOW_HOME/$dir directory already exists"
+    fi
+done
+
+# Copy daily_nasa_neo_etl_pipeline.py to dag folder
+cp "src/daily_nasa_neo_etl_pipeline-TEMPLATE.py" "$AIRFLOW_HOME/dags/daily_nasa_neo_etl_pipeline.py"
+
+echo ""
+# Function to create management scripts
+create_stop_script() {
+    # Create stop script
+    cat > "$AIRFLOW_HOME/stop_airflow.sh" << 'EOF'
+#!/bin/bash
+
+echo "Current Airflow processes:"
+pgrep -f airflow
+read -p "Kill these processes? (y/N): " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  if [[ -f "$(dirname "$0")/service_pid.txt" ]]; then
+      echo "Stopping Airflow services..."
+      source "$(dirname "$0")/service_pid.txt"
+
+      if [[ -n $AIRFLOW_PID ]] && kill -0 "$AIRFLOW_PID" 2> /dev/null; then # if AIRFLOW_PID not empty and PID exists
+          kill "$AIRFLOW_PID"
+          echo "PID: $AIRFLOW_PID stopped"
+      else
+          echo "PID not found"
+      fi
+
+      rm -f "$(dirname "$0")/service_pid.txt"
+  fi
+
+  echo
+  echo "Killing Airflow processes gracefully (SIGTERM)..."
+    pkill -f airflow
+
+    # Wait a few seconds
+    sleep 3
+
+  REMAINING=$(pgrep -f airflow)
+    if [ -z "$REMAINING" ]; then
+        echo "All Airflow processes killed successfully."
+    else
+        echo "Some processes still running!"
+        echo "Try pkill -9 -f airflow to force killing (SIGKILL)"
+    fi
+fi
+EOF
+
+    # Make script executable
+    chmod +x "$AIRFLOW_HOME/stop_airflow.sh"
+    echo "Stop Airflow script created: $AIRFLOW_HOME/stop_airflow.sh"
+}
+
+# Create management scripts
+create_stop_script
+
+echo ""
+echo "=== Launching Airflow ==="
+echo "Airflow has been installed in: $AIRFLOW_HOME"
+echo ""
+echo "Access the web UI at: http://localhost:8080"
+echo "Username: admin"
+echo "Password: Check the output above for the generated password"
+echo ""
+echo "Stop Airflow script created: $AIRFLOW_HOME/stop_airflow.sh"
+echo ""
+echo "Initializing all services!"
+echo""
+OUTER_EOF
+
+  # Make script executable
+  chmod +x "$PWD/start_airflow.sh"
+  echo "Start Airflow script created: $PWD/start_airflow.sh"
+
+# Remove minio directory
+rm -r minio

@@ -84,7 +84,8 @@ def _create_session_with_retry(config: dict, max_retries: int = 3) -> Optional[S
                 builder = builder.config(key, value)
 
             # Create session
-            spark = builder.getOrCreate()
+            spark = builder.config('setLogLevel', 'ERROR') \
+            .getOrCreate()
 
             # Validate session
             _validate_session(spark)
