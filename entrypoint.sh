@@ -83,14 +83,14 @@ echo "neo bucket created"
 if ! redis-cli --version; then
   echo " Installing redis"
   # Add redis repository to the APT index
-  sudo apt-get install lsb-release curl gpg
+  sudo apt-get -y install lsb-release curl gpg
   curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
   sudo chmod 644 /usr/share/keyrings/redis-archive-keyring.gpg
   echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
 
   # Update APT index and install Redis
-  sudo apt-get update
-  sudo apt-get install redis
+  sudo apt-get -y update
+  sudo apt-get -y install redis
   echo "redis installation completed"
 fi
 
@@ -153,11 +153,6 @@ case $PYTHON_VERSION in
     *)
         echo "⚠ Warning: Python $PYTHON_VERSION may not be fully supported by Airflow"
         echo "  Supported versions: 3.9, 3.10, 3.11, 3.12"
-        read -p "Continue anyway? (y/N): " -n 1 -r # return after 1 character and do not allow backslashes
-        echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            exit 1
-        fi
         ;;
 esac
 
@@ -340,8 +335,8 @@ echo "=== Launching Airflow ==="
 echo "Airflow has been installed in: $AIRFLOW_HOME"
 echo ""
 echo "Access the web UI at: http://localhost:8080"
-echo "Username: admin"
-echo "Password: Check the output above for the generated password"
+echo "{Username: password}"
+cat simple_auth_manager_passwords.json.generated
 echo ""
 echo "Stop Airflow script created: $AIRFLOW_HOME/stop_airflow.sh"
 echo ""

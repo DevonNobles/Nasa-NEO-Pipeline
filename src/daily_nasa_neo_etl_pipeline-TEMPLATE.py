@@ -14,15 +14,18 @@ from src.config import NASA_NEO_API_KEY, NASA_NEO_URI, BUCKET_NAME, Mode
 from src.minio_client import create_minio_client
 from src.date_ranges import calculate_missing_dates
 from src.neo_api_pipeline import NeoPipelineController
-
+from src.spark_session import create_spark_session, close_spark_session
 # Connect to Minio blob storage
 minio_client = create_minio_client()
+
+# Create Spark session for silver catalog
+spark = create_spark_session(BUCKET_NAME)
 
 # Add parent directory to Python path
 project_dir = Path(__file__).resolve().parent.parent.parent
 
 # Define the pickle file path in a location Airflow can access
-PICKLE_FILE_PATH = f"{project_dir}/airflow_temp/missing_dates.pkl"
+PICKLE_FILE_PATH = f"{project_dir}/airflow/missing_dates.pkl"
 
 
 def generate_missing_dates_pickle():
@@ -76,7 +79,7 @@ def load_missing_dates_and_process_bronze():
                 f"Processing bronze for date range {i + 1}/{len(missing_date_table)}: {date_start} to {date_end}")
 
             # Initialize NeoApiClient
-            neo_client = NeoPipelineController(mode=Mode.BRONZE,
+            neo_client = NeoPipelineController(mode=Mode.BRONZE.value,
                                                storage=minio_client,
                                                bucket_name=BUCKET_NAME,
                                                api_key=NASA_NEO_API_KEY,
@@ -119,9 +122,10 @@ def load_missing_dates_and_process_silver():
                 f"Processing silver for date range {i + 1}/{len(missing_date_table)}: {date_start} to {date_end}")
 
             # Initialize NeoApiClient
-            neo_client = NeoPipelineController(mode=Mode.SILVER,
+            neo_client = NeoPipelineController(mode=Mode.SILVER.value,
                                                storage=minio_client,
                                                bucket_name=BUCKET_NAME,
+                                               spark=spark,
                                                start_date=date_start,
                                                end_date=date_end)
 
@@ -144,9 +148,10 @@ def process_gold_layer():
     """
     try:
         # Initialize NeoApiClient
-        neo_client = NeoPipelineController(mode=Mode.GOLD,
+        neo_client = NeoPipelineController(mode=Mode.GOLD.value,
                                            storage=minio_client,
-                                           bucket_name=BUCKET_NAME)
+                                           bucket_name=BUCKET_NAME,
+                                           spark=spark)
 
         # Execute ETL pipeline task based on mode
         neo_client.extract().transform().load()
@@ -248,3 +253,8 @@ with DAG(
 
     # Define the task dependencies
     generate_dates_task >> bronze_processing_task >> silver_processing_task >> gold_processing_task >> cleanup_task
+
+try:
+    pass
+finally:
+    close_spark_session(spark)

@@ -2,7 +2,7 @@ from enum import Enum
 
 # NASA Open API NEO config
 NASA_NEO_URI='https://api.nasa.gov/neo/rest/v1/feed?'
-NASA_NEO_API_KEY='<Add NASA OPEN API KEY HERE>'
+NASA_NEO_API_KEY='Sfn0wfG6FG6E3D5Hu8MrxSja38yMXftWqboKv6ZH'
 
 # MinIO environment variables
 MINIO_ROOT_USER='minioadmin'
