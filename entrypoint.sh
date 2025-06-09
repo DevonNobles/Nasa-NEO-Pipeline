@@ -64,27 +64,24 @@ else
   echo "Use 'mc --help' for more info"
 fi
 
-
-sudo systemctl start minio.service
-if [ "$(systemctl is-active minio.service)" = "active" ]; then
-  echo "minio.service is $(systemctl is-active minio.service)"
-  echo "username: minioadmin"
-  echo "password: minioadmin"
-  echo "Url: http://localhost:9001/"
-else
-  echo "minio.service is $(systemctl is-active minio.service)"
-  exit 1
-fi
+# Start minio directly and suppress output
+nohup sudo -u root minio server /mnt/data --console-address ":9001" &> "$PWD/minio/minio-binaries/minio.log" &
+echo "MinIO service started"
+sleep 5 # give server time to start
 
 # Set alias
+echo "Setting minio alias"
 mc alias set myminio http://localhost:9000 minioadmin minioadmin
 mc ready myminio
+echo "MinIO ready"
 
 #Create buckets
 mc mb --ignore-existing myminio/neo
+echo "neo bucket created"
 
 # Install redis
 if ! redis-cli --version; then
+  echo " Installing redis"
   # Add redis repository to the APT index
   sudo apt-get install lsb-release curl gpg
   curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
@@ -94,8 +91,12 @@ if ! redis-cli --version; then
   # Update APT index and install Redis
   sudo apt-get update
   sudo apt-get install redis
+  echo "redis installation completed"
 fi
 
+# Create python virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
 
 # Defaults to Airflow version 3.0.1
 AIRFLOW_VERSION="3.0.1"
