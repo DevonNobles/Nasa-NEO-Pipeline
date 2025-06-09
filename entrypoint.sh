@@ -355,3 +355,6 @@ OUTER_EOF
 
 # Remove minio directory
 rm -r minio
+
+# start Jupyter Notebook in the background
+jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root &
