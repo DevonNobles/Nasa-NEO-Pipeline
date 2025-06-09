@@ -14,9 +14,7 @@ from src.config import NASA_NEO_API_KEY, NASA_NEO_URI, BUCKET_NAME, Mode
 from src.minio_client import create_minio_client
 from src.date_ranges import calculate_missing_dates
 from src.neo_api_pipeline import NeoPipelineController
-
-# Connect to Minio blob storage
-minio_client = create_minio_client()
+from src.spark_session import create_spark_session, close_spark_session
 
 # Add parent directory to Python path
 project_dir = Path(__file__).resolve().parent.parent.parent
@@ -34,6 +32,8 @@ def generate_missing_dates_pickle():
         # Create the temp directory if it doesn't exist
         os.makedirs(os.path.dirname(PICKLE_FILE_PATH), exist_ok=True)
 
+        # Connect to Minio blob storage
+        minio_client = create_minio_client()
         missing_date_table = calculate_missing_dates(datetime.today().date(), minio_client)
 
         # Save the missing_date_table to a pickle file
@@ -69,6 +69,9 @@ def load_missing_dates_and_process_bronze():
             logging.info("No missing dates to process in bronze layer")
             return "no_data_processed"
 
+        # Connect to Minio blob storage
+        minio_client = create_minio_client()
+
         # Process each date range
         processed_ranges = []
         for i, (date_start, date_end) in enumerate(missing_date_table):
@@ -76,7 +79,7 @@ def load_missing_dates_and_process_bronze():
                 f"Processing bronze for date range {i + 1}/{len(missing_date_table)}: {date_start} to {date_end}")
 
             # Initialize NeoApiClient
-            neo_client = NeoPipelineController(mode=Mode.BRONZE,
+            neo_client = NeoPipelineController(mode=Mode.BRONZE.value,
                                                storage=minio_client,
                                                bucket_name=BUCKET_NAME,
                                                api_key=NASA_NEO_API_KEY,
@@ -101,6 +104,10 @@ def load_missing_dates_and_process_silver():
     """
     Load the pickled missing_date_table and process all silver tasks.
     """
+
+    # initialize spark variable
+    spark = None
+
     try:
         # Load the missing_date_table from pickle file
         with open(PICKLE_FILE_PATH, 'rb') as f:
@@ -112,6 +119,12 @@ def load_missing_dates_and_process_silver():
             logging.info("No missing dates to process in silver layer")
             return "no_data_processed"
 
+        # Connect to Minio blob storage
+        minio_client = create_minio_client()
+
+        # Create Spark session for silver catalog
+        spark = create_spark_session(BUCKET_NAME)
+
         # Process each date range
         processed_ranges = []
         for i, (date_start, date_end) in enumerate(missing_date_table):
@@ -119,9 +132,10 @@ def load_missing_dates_and_process_silver():
                 f"Processing silver for date range {i + 1}/{len(missing_date_table)}: {date_start} to {date_end}")
 
             # Initialize NeoApiClient
-            neo_client = NeoPipelineController(mode=Mode.SILVER,
+            neo_client = NeoPipelineController(mode=Mode.SILVER.value,
                                                storage=minio_client,
                                                bucket_name=BUCKET_NAME,
+                                               spark=spark,
                                                start_date=date_start,
                                                end_date=date_end)
 
@@ -136,17 +150,31 @@ def load_missing_dates_and_process_silver():
     except Exception as e:
         logging.error(f"Error in silver processing: {e}")
         raise
+    finally:
+        if spark:
+            close_spark_session(spark)
 
 
 def process_gold_layer():
     """
     Process the gold layer to create the final analytical dataset.
     """
+
+    # initialize spark variable
+    spark = None
+
     try:
+        # Connect to Minio blob storage
+        minio_client = create_minio_client()
+
+        # Create Spark session for silver catalog
+        spark = create_spark_session(BUCKET_NAME)
+
         # Initialize NeoApiClient
-        neo_client = NeoPipelineController(mode=Mode.GOLD,
+        neo_client = NeoPipelineController(mode=Mode.GOLD.value,
                                            storage=minio_client,
-                                           bucket_name=BUCKET_NAME)
+                                           bucket_name=BUCKET_NAME,
+                                           spark=spark)
 
         # Execute ETL pipeline task based on mode
         neo_client.extract().transform().load()
@@ -157,6 +185,9 @@ def process_gold_layer():
     except Exception as e:
         logging.error(f"Error in gold processing: {e}")
         raise
+    finally:
+        if spark:
+            close_spark_session(spark)
 
 
 def cleanup_pickle_file():

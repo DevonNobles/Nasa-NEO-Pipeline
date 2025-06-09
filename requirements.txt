@@ -8,6 +8,7 @@ panel~=1.7.1
 hvplot~=0.11.3
 pyiceberg~=0.9.1
 regex~=2024.11.6
+pyarrow~=20.0.0
 
 # Jupyter notebook
 IPython~= 9.2.0

@@ -16,6 +16,7 @@ class NeoPipelineController:
                  mode,
                  storage,
                  bucket_name,
+                 spark=None,
                  api_key=None,
                  api_uri=None,
                  start_date=None,
@@ -46,10 +47,10 @@ class NeoPipelineController:
         self.storage = storage
         self.bucket_name = bucket_name
         self.mode = mode
+        self.spark = spark
 
         # Initialize state
         self.data: Optional[dict | pyspark.sql.DataFrame] = None
-        self.spark: Optional[SparkSession] = None
 
         logger.debug(f"NeoApiClient initialized for bucket '{bucket_name}' in {mode} mode")
 
@@ -276,16 +277,10 @@ class NeoPipelineController:
         logger.debug("Extracting data from silver Iceberg tables")
 
         try:
-            # Create Spark session for silver catalog
-            self.spark = create_spark_session(self.bucket_name)
-
             # Execute query
             query = "SELECT * FROM iceberg_catalog.neo_db.silver_asteroids"
             logger.debug(f"Executing query: {query}")
             self.data = self.spark.sql(query)
-
-            # Close SparkSession
-            close_spark_session(self.spark)
 
             # Validate that we got data
             if self.data.count() == 0:
@@ -328,9 +323,6 @@ class NeoPipelineController:
                     # Silver mode: JSON to structured DataFrame
                     if not self.data:
                         raise DataTransformationError("No data available for silver transformation")
-
-                    if not self.spark:
-                        self.spark = create_spark_session(self.bucket_name)
 
                     self.data = NeoTransformations.json_to_structured_dataframe(self.data, self.spark)
 
@@ -383,9 +375,6 @@ class NeoPipelineController:
                     if not self.data:
                         raise DataLoadError("No data available for silver load")
 
-                    if not self.spark:
-                        self.spark = create_spark_session(self.bucket_name)
-
                     self.spark.sql("CREATE DATABASE IF NOT EXISTS iceberg_catalog.neo_db")
 
                     table = f'iceberg_catalog.neo_db.{self.mode}_asteroids'
@@ -395,14 +384,9 @@ class NeoPipelineController:
 
                     logger.info(f"Successfully loaded data to silver table")
 
-                    close_spark_session(self.spark)
-
                 case 'gold':
                     if not self.data:
                         raise DataLoadError("No data available for gold load")
-
-                    if not self.spark:
-                        self.spark = create_spark_session(self.bucket_name)
 
                     table = f'iceberg_catalog.neo_db.{self.mode}_asteroids'
                     keys = ['observation_date', 'asteroid_id']
@@ -410,8 +394,6 @@ class NeoPipelineController:
                     self.upsert_to_iceberg_table(self.data, table, keys, self.spark)
 
                     logger.info(f"Successfully loaded data to gold table")
-
-                    close_spark_session(self.spark)
 
                 case _:
                     raise ValueError(f"Invalid load mode: {self.mode}")

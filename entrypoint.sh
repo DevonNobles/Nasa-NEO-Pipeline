@@ -83,20 +83,56 @@ echo "neo bucket created"
 if ! redis-cli --version; then
   echo " Installing redis"
   # Add redis repository to the APT index
-  sudo apt-get install lsb-release curl gpg
+  sudo apt-get -y install lsb-release curl gpg
   curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
   sudo chmod 644 /usr/share/keyrings/redis-archive-keyring.gpg
   echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
 
   # Update APT index and install Redis
-  sudo apt-get update
-  sudo apt-get install redis
+  sudo apt-get -y update
+  sudo apt-get -y install redis
   echo "redis installation completed"
+fi
+
+# Start Redis server
+if ! pgrep redis-server > /dev/null; then
+    echo "Starting Redis server..."
+    redis-server --daemonize yes
+
+    # Wait for Redis to start
+    sleep 2
+
+    # Verify Redis is running
+    if redis-cli ping > /dev/null 2>&1; then
+        echo "✓ Redis server started successfully"
+    else
+        echo "✗ Failed to start Redis server"
+        exit 1
+    fi
+else
+    echo "✓ Redis server already running"
 fi
 
 # Create python virtual environment
 python3 -m venv .venv
 source .venv/bin/activate
+
+echo "=== Java Installation ==="
+if java -version &> /dev/null; then
+    echo "✓ Java already installed: $(java -version 2>&1 | head -1)"
+else
+    echo "Installing OpenJDK 11..."
+    sudo apt update
+    sudo apt install -y openjdk-11-jdk
+    echo "✓ Java installed: $(java -version 2>&1 | head -1)"
+fi
+
+# Set JAVA_HOME
+export JAVA_HOME=$(sudo find /usr -name "java" -type f -executable 2>/dev/null | head -1 | xargs readlink -f | sed 's|/bin/java||')
+echo "JAVA_HOME set to: $JAVA_HOME"
+
+# Make it persistent for the virtual environment
+echo "export JAVA_HOME=$JAVA_HOME" >> .venv/bin/activate
 
 # Defaults to Airflow version 3.0.1
 AIRFLOW_VERSION="3.0.1"
@@ -153,11 +189,6 @@ case $PYTHON_VERSION in
     *)
         echo "⚠ Warning: Python $PYTHON_VERSION may not be fully supported by Airflow"
         echo "  Supported versions: 3.9, 3.10, 3.11, 3.12"
-        read -p "Continue anyway? (y/N): " -n 1 -r # return after 1 character and do not allow backslashes
-        echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            exit 1
-        fi
         ;;
 esac
 
@@ -340,8 +371,7 @@ echo "=== Launching Airflow ==="
 echo "Airflow has been installed in: $AIRFLOW_HOME"
 echo ""
 echo "Access the web UI at: http://localhost:8080"
-echo "Username: admin"
-echo "Password: Check the output above for the generated password"
+echo "'See Username: password' below"
 echo ""
 echo "Stop Airflow script created: $AIRFLOW_HOME/stop_airflow.sh"
 echo ""

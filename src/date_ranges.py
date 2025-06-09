@@ -2,11 +2,12 @@ from datetime import *
 from typing import Optional
 import minio
 import pandas as pd
+from src.config import BUCKET_NAME, DAY, MONTH, YEAR
 
 # Set earliest date for data retrieval
 # The bronze task will request all data between this date and today's date
 # Only 7 days can be requested at one time. Only 10,000 requests per day
-earliest_date=date(2025, 5, 1)
+earliest_date=date(YEAR, MONTH, DAY)
 
 
 def create_missing_date_list(df: pd.DataFrame, filter_by: Optional[pd.DataFrame]=None) -> list[tuple[str, str]]:
@@ -29,7 +30,7 @@ def create_missing_date_list(df: pd.DataFrame, filter_by: Optional[pd.DataFrame]
 
 def get_current_bronze_file_datetimes(client: minio.Minio) -> list[tuple[date, date]]:
     # Retrieve list of names of objects in 'neo/bronze/'
-    obj_list = client.list_objects('neo', recursive=True, prefix='bronze/')
+    obj_list = client.list_objects(BUCKET_NAME, recursive=True, prefix='bronze/')
     obj_list = [obj.object_name for obj in obj_list]
 
     # Parse object names to extract start_date and end_date
@@ -74,7 +75,6 @@ def calculate_missing_dates(execution_date: date, storage_client) -> list[tuple[
     # DataFrame of all dates between today and the earliest_date
     full_date_range_df = date_table_df(earliest_date, execution_date)
 
-    # List of all date ranges already stored in 'neo/bronze/'
     obj_datetimes_list: list[tuple[date, date]] = get_current_bronze_file_datetimes(storage_client)
 
     # Create Dataframe of dates stored in 'neo/bronze/'

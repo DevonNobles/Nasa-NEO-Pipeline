@@ -197,25 +197,9 @@ class NeoTransformations:
         try:
             base_columns = [
                 "observation_date",
-                "asteroid_id",
                 "name",
-                "close_approach_date",
-                "is_potentially_hazardous",
-                "diameter_min_km",
-                "diameter_max_km",
-                "velocity_kph",
-                "miss_distance_km",
-                "diameter_min_m",
-                "diameter_max_m",
-                "diameter_min_mi",
-                "diameter_max_mi",
-                "diameter_min_ft",
-                "diameter_max_ft",
                 "velocity_kps",
-                "velocity_mph",
-                "miss_distance_au",
                 "miss_distance_ld",
-                "miss_distance_mi"
                 ]
             return df.select(*base_columns)
 

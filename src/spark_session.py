@@ -45,9 +45,10 @@ def _build_spark_config(bucket_name: 'str') -> dict:
         "spark.sql.extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",
         "spark.sql.catalog.iceberg_catalog": "org.apache.iceberg.spark.SparkCatalog",
         "spark.sql.catalog.iceberg_catalog.type": "hadoop",
-        "spark.sql.catalog.iceberg_catalog.warehouse": f"s3a://{bucket_name}",
+        "spark.sql.catalog.iceberg_catalog.warehouse": f"s3a://{bucket_name}/neo_db",
         "spark.sql.catalog.iceberg_catalog.io-impl": "org.apache.iceberg.hadoop.HadoopFileIO",
         "spark.sql.catalog.iceberg_catalog.s3.endpoint": f"http://{MINIO_ENDPOINT}",
+        "spark.sql.defaultCatalog": "iceberg_catalog",
 
         # Hadoop S3a configuration
         "spark.hadoop.fs.s3a.endpoint": f"http://{MINIO_ENDPOINT}",
@@ -84,8 +85,7 @@ def _create_session_with_retry(config: dict, max_retries: int = 3) -> Optional[S
                 builder = builder.config(key, value)
 
             # Create session
-            spark = builder.config('setLogLevel', 'ERROR') \
-            .getOrCreate()
+            spark = builder.getOrCreate()
 
             # Validate session
             _validate_session(spark)
